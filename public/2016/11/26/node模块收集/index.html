@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>&#39;常用模块收集&#39; | 前端匠心</title>
+  <title>node模块收集 | 前端匠心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="http://www.frontendzzf.com/favicon.ico" type="image/x-icon">
   
@@ -11,16 +11,49 @@
   
   
   <meta name="keywords" content="node">
-  <meta name="description" content="真正的匠者，一定在某个领域做到虚心、恒心、细心，才能完成真正意义上的创新，这种创新是浴火后的新生，是锤炼后的淬火，更是一种水到渠成的洒脱心态。">
+  <meta name="description" content="模块收集(列表顺序随机)
+解析命令行参数commander
+Web框架Express
+静态文件服务器serve-static
+渲染markdown格式的文档markdown-it
+swig语法模板引擎swig
+遍历目录下的所有文件rd
+扩展了fs模块fs-extra
+使用系统程序打开指定文件或网址open
+解析、格式化日期时间moment
+nodejs抓取页面，封装了jQuerycheerio
+网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="'常用模块收集'">
-<meta property="og:url" content="http://frontendzzf.com/2016/11/26/常用模块收集/index.html">
+<meta property="og:title" content="node模块收集">
+<meta property="og:url" content="http://frontendzzf.com/2016/11/26/node模块收集/index.html">
 <meta property="og:site_name" content="前端匠心">
-<meta property="og:description" content="真正的匠者，一定在某个领域做到虚心、恒心、细心，才能完成真正意义上的创新，这种创新是浴火后的新生，是锤炼后的淬火，更是一种水到渠成的洒脱心态。">
-<meta property="og:updated_time" content="2016-11-26T06:45:23.256Z">
+<meta property="og:description" content="模块收集(列表顺序随机)
+解析命令行参数commander
+Web框架Express
+静态文件服务器serve-static
+渲染markdown格式的文档markdown-it
+swig语法模板引擎swig
+遍历目录下的所有文件rd
+扩展了fs模块fs-extra
+使用系统程序打开指定文件或网址open
+解析、格式化日期时间moment
+nodejs抓取页面，封装了jQuerycheerio
+网">
+<meta property="og:updated_time" content="2016-11-26T07:15:42.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="'常用模块收集'">
-<meta name="twitter:description" content="真正的匠者，一定在某个领域做到虚心、恒心、细心，才能完成真正意义上的创新，这种创新是浴火后的新生，是锤炼后的淬火，更是一种水到渠成的洒脱心态。">
+<meta name="twitter:title" content="node模块收集">
+<meta name="twitter:description" content="模块收集(列表顺序随机)
+解析命令行参数commander
+Web框架Express
+静态文件服务器serve-static
+渲染markdown格式的文档markdown-it
+swig语法模板引擎swig
+遍历目录下的所有文件rd
+扩展了fs模块fs-extra
+使用系统程序打开指定文件或网址open
+解析、格式化日期时间moment
+nodejs抓取页面，封装了jQuerycheerio
+网">
   
     <link rel="alternative" href="/atom.xml" title="前端匠心" type="application/atom+xml">
   
@@ -111,7 +144,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">&#39;常用模块收集&#39;</div>
+        <div class="flex-col header-title ellipsis">node模块收集</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -132,10 +165,10 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">&#39;常用模块收集&#39;</h1>
+    <h1 class="author">node模块收集</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-11-26T06:43:56.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2016-11-26T06:48:58.000Z" itemprop="datePublished" class="page-time">
   2016-11-26
 </time>
 
@@ -148,7 +181,7 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-常用模块收集" 
+      <article id="post-node模块收集" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
@@ -199,7 +232,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模块收集-列表顺序随机"><span class="post-toc-text">模块收集(列表顺序随机)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#异步相关"><span class="post-toc-text">异步相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gulp中间件"><span class="post-toc-text">gulp中间件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#grunt中间件"><span class="post-toc-text">grunt中间件</span></a></li></ol></li></ol>
             </nav>
             
         </aside>
@@ -207,7 +240,22 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <h2 id="模块收集-列表顺序随机"><a href="#模块收集-列表顺序随机" class="headerlink" title="模块收集(列表顺序随机)"></a>模块收集(列表顺序随机)</h2><ul>
+<li>解析命令行参数<a href="https://www.npmjs.com/package/commander" target="_blank" rel="external">commander</a></li>
+<li>Web框架<a href="http://www.expressjs.com.cn/" target="_blank" rel="external">Express</a></li>
+<li>静态文件服务器<a href="https://github.com/expressjs/serve-static" target="_blank" rel="external">serve-static</a></li>
+<li>渲染markdown格式的文档<a href="https://www.npmjs.com/package/markdown-it" target="_blank" rel="external">markdown-it</a></li>
+<li>swig语法模板引擎<a href="https://www.npmjs.com/package/swig" target="_blank" rel="external">swig</a></li>
+<li>遍历目录下的所有文件<a href="https://www.npmjs.com/package/rd" target="_blank" rel="external">rd</a></li>
+<li>扩展了fs模块<a href="https://www.npmjs.com/package/fs-extra" target="_blank" rel="external">fs-extra</a></li>
+<li>使用系统程序打开指定文件或网址<a href="https://www.npmjs.com/package/open" target="_blank" rel="external">open</a></li>
+<li>解析、格式化日期时间<a href="https://www.npmjs.com/package/moment" target="_blank" rel="external">moment</a></li>
+<li>nodejs抓取页面，封装了jQuery<a href="https://www.npmjs.com/package/cheerio" target="_blank" rel="external">cheerio</a></li>
+<li>网络请求模块<a href="https://www.npmjs.com/package/request" target="_blank" rel="external">request</a><h3 id="异步相关"><a href="#异步相关" class="headerlink" title="异步相关"></a>异步相关</h3></li>
+<li>promise实现模块<a href="https://www.npmjs.com/package/bluebird" target="_blank" rel="external">bluebird</a></li>
+<li>异步控制<a href="https://www.npmjs.com/package/async" target="_blank" rel="external">async</a><h3 id="gulp中间件"><a href="#gulp中间件" class="headerlink" title="gulp中间件"></a>gulp中间件</h3><h3 id="grunt中间件"><a href="#grunt中间件" class="headerlink" title="grunt中间件"></a>grunt中间件</h3></li>
+</ul>
+
 
             
             <div class="post-reward">
@@ -218,7 +266,7 @@
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://frontendzzf.com/2016/11/26/常用模块收集/" target="_blank" rel="external">http://frontendzzf.com/2016/11/26/常用模块收集/</a>
+                <a href="http://frontendzzf.com/2016/11/26/node模块收集/" target="_blank" rel="external">http://frontendzzf.com/2016/11/26/node模块收集/</a>
                 </p>
                 <footer><cite><a href="http://frontendzzf.com">@前端匠心</a></cite></footer>
             </blockquote>
@@ -242,7 +290,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="常用模块收集" data-title="&#39;常用模块收集&#39;" data-url="http://frontendzzf.com/2016/11/26/常用模块收集/index.html"></div>
+	<div class="ds-thread" data-thread-key="node模块收集" data-title="node模块收集" data-url="http://frontendzzf.com/2016/11/26/node模块收集/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -273,10 +321,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "'常用模块收集'",
+    title: "node模块收集",
     pic: "/img/profile.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://frontendzzf.com/2016/11/26/常用模块收集/index.html"
+    url: "http://frontendzzf.com/2016/11/26/node模块收集/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

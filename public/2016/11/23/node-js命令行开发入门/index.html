@@ -14,7 +14,12 @@
   <meta name="description" content="学习资源
 commander github地址：commander
 sass命令行实战 简书地址：Node.js+commander开发命令行工具
-node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具">
+node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具
+
+实战项目命令行工具—开发一个静态博客系统(参考《Node.js实战》)
+
+编写命令行项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：
+123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node.js命令行开发入门">
 <meta property="og:url" content="http://frontendzzf.com/2016/11/23/node-js命令行开发入门/index.html">
@@ -22,14 +27,24 @@ node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行
 <meta property="og:description" content="学习资源
 commander github地址：commander
 sass命令行实战 简书地址：Node.js+commander开发命令行工具
-node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具">
-<meta property="og:updated_time" content="2016-11-23T08:51:27.412Z">
+node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具
+
+实战项目命令行工具—开发一个静态博客系统(参考《Node.js实战》)
+
+编写命令行项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：
+123">
+<meta property="og:updated_time" content="2016-11-27T08:47:52.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node.js命令行开发入门">
 <meta name="twitter:description" content="学习资源
 commander github地址：commander
 sass命令行实战 简书地址：Node.js+commander开发命令行工具
-node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具">
+node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行工具
+
+实战项目命令行工具—开发一个静态博客系统(参考《Node.js实战》)
+
+编写命令行项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：
+123">
   
     <link rel="alternative" href="/atom.xml" title="前端匠心" type="application/atom+xml">
   
@@ -208,7 +223,7 @@ node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#学习资源"><span class="post-toc-text">学习资源</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#学习资源"><span class="post-toc-text">学习资源</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实战项目"><span class="post-toc-text">实战项目</span></a></li></ol>
             </nav>
             
         </aside>
@@ -219,8 +234,34 @@ node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行
             <h1 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h1><ul>
 <li>commander github地址：<a href="http://tj.github.io/commander.js/#Command.prototype.action" target="_blank" rel="external">commander</a></li>
 <li>sass命令行实战 简书地址：<a href="http://www.jianshu.com/p/2cae952250d1" target="_blank" rel="external">Node.js+commander开发命令行工具</a></li>
-<li>node自动构件化项目 慕课地址:<a href="http://www.imooc.com/article/3156" target="_blank" rel="external">前端扫盲-之打造一个Node命令行工具</a>    </li>
+<li>node自动构件化项目 慕课地址:<a href="http://www.imooc.com/article/3156" target="_blank" rel="external">前端扫盲-之打造一个Node命令行工具</a></li>
 </ul>
+<h1 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h1><p>命令行工具—开发一个静态博客系统(参考《Node.js实战》)</p>
+<ol>
+<li><p>编写命令行<br>项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env node</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</div><div class="line"></div><div class="line">program.version(<span class="built_in">require</span>(<span class="string">'../package.json'</span>).version);</div><div class="line"></div><div class="line"><span class="comment">//help命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'help'</span>)</div><div class="line">	.description(<span class="string">'显示使用帮助'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		program.outputHelp();</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//create命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'create [dir]'</span>)</div><div class="line">	.description(<span class="string">'创建一个空的博客'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_create.js'</span>)(dir);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//preview命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'preview [dir]'</span>)</div><div class="line">	.description(<span class="string">'实时预览'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_preview.js'</span>)(dir);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//build命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'build [dir]'</span>)</div><div class="line">	.description(<span class="string">'生成整站静态html'</span>)</div><div class="line">	.option(<span class="string">'-o, --output &lt;dir&gt;'</span>, <span class="string">'生成的静态html存放目录'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir, options</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_build.js'</span>)(dir, options);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"></div><div class="line">program.parse(process.argv);</div></pre></td></tr></table></figure>
+<p>其中第一行是核心，指定了node脚本运行命令行，其余为commander命令编写代码，参考commander API即可。<br>然后，在package.json文件中指定bin，参考常用的gulp，express等命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="string">"name"</span>: <span class="string">"myblog"</span>,</div><div class="line"><span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line"><span class="string">"description"</span>: <span class="string">""</span>,</div><div class="line"><span class="string">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line"><span class="string">"bin"</span>: &#123;</div><div class="line">  <span class="string">"myblog"</span>: <span class="string">"./bin/myblog.js"</span></div><div class="line">&#125;,</div><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">&#125;,</div><div class="line"><span class="string">"keywords"</span>: [],</div><div class="line"><span class="string">"author"</span>: <span class="string">""</span>,</div><div class="line"><span class="string">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line"><span class="string">"dependencies"</span>: &#123;</div><div class="line">  <span class="string">"commander"</span>: <span class="string">"^2.9.0"</span>,</div><div class="line">  <span class="string">"ejs"</span>: <span class="string">"^2.5.2"</span>,</div><div class="line">  <span class="string">"express"</span>: <span class="string">"^4.14.0"</span>,</div><div class="line">  <span class="string">"fs-extra"</span>: <span class="string">"^1.0.0"</span>,</div><div class="line">  <span class="string">"markdown-it"</span>: <span class="string">"^8.1.0"</span>,</div><div class="line">  <span class="string">"moment"</span>: <span class="string">"^2.17.0"</span>,</div><div class="line">  <span class="string">"open"</span>: <span class="string">"^0.0.5"</span>,</div><div class="line">  <span class="string">"rd"</span>: <span class="string">"^1.0.0"</span>,</div><div class="line">  <span class="string">"serve-static"</span>: <span class="string">"^1.11.1"</span>,</div><div class="line">  <span class="string">"swig"</span>: <span class="string">"^1.4.2"</span></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在指定了myblog命令运行./bin/myblog文件了，要是命令行生效，需要安装到环境变量，可以通过两种方式。<br>npm install . -g<br>也就是安装本地模块包到全局环境变量。<br>npm link<br>也就是通过符号链接方式<br>现在，就可以通过myblog help命令了</p>
+</li>
+<li><p>preview命令<br>preview命令需要web服务器，使用express服务器即可。<br>核心思路：</p>
+<ul>
+<li>通过express启动web服务，当监听到get请求时，通过路由读取相应的md文件，然后使用markdown-it进行转化为html文件，进行res.end(html)输出响应即可。</li>
+<li><p>文章元数据，也就是头部的title，date元数据，进行转化为post对象的属性，格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title:Node.js实战</div><div class="line">date:<span class="number">2015</span><span class="number">-05</span><span class="number">-15</span></div><div class="line">layout:post</div><div class="line">---</div><div class="line">开始编写《node.js》实战</div></pre></td></tr></table></figure>
+</li>
+<li><p>增加模板使用ejs渲染模板文件，将渲染后的html通过res.end(html)文件输出。模板文件可以按标准的样式输出，并且添加样式文件style.css。</p>
+</li>
+<li>渲染文章列表，也就是首页。通过rd模块遍历_posts目录下的所有文件，并按时间进行排序，最后通过layout模板下的index.html进行渲染首页。</li>
+</ul>
+</li>
+<li>build命令<br>生成静态博客build命令,基本过程同上，只是将ejs根据模板渲染后的html，通过fs-extra模块进行写文件。同时通过open模块打开浏览器。</li>
+<li>create命令<br>创建新博客create命令，通过将必须的文件结构，放在tpl文件夹下，通过fs-extra模块的mkdir命令创建目录，通过moment模块处理时间，创建一个新博客的hello-world第一篇博客。<br>5.第三方服务<ul>
+<li>评论组件<br>多说组件<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a><br>Disqus<a href="https://disqus.com" target="_blank" rel="external">Disqus</a></li>
+<li>分享组件<br>加网<a href="http://www.jiathis.com/" target="_blank" rel="external">JiaThis</a></li>
+</ul>
+</li>
+</ol>
 
 
             
@@ -241,9 +282,9 @@ node自动构件化项目 慕课地址:前端扫盲-之打造一个Node命令行
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/11/26/常用模块收集/" id="post-prev" class="post-nav-link">
+      <a href="/2016/11/26/node模块收集/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">&#39;常用模块收集&#39;</h4>
+        <h4 class="title">node模块收集</h4>
       </a>
     </div>
   
