@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>前端匠心</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://frontendzzf.com/"/>
+  <updated>2016-11-26T06:45:23.256Z</updated>
+  <id>http://frontendzzf.com/</id>
+  
+  <author>
+    <name>webfrontzhifei</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&#39;常用模块收集&#39;</title>
+    <link href="http://frontendzzf.com/2016/11/26/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97%E6%94%B6%E9%9B%86/"/>
+    <id>http://frontendzzf.com/2016/11/26/常用模块收集/</id>
+    <published>2016-11-26T06:43:56.000Z</published>
+    <updated>2016-11-26T06:45:23.256Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node" scheme="http://frontendzzf.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>node.js命令行开发入门</title>
+    <link href="http://frontendzzf.com/2016/11/23/node-js%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/"/>
+    <id>http://frontendzzf.com/2016/11/23/node-js命令行开发入门/</id>
+    <published>2016-11-23T08:35:25.000Z</published>
+    <updated>2016-11-23T08:51:27.412Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h1><ul>
+<li>commander github地址：<a href="http://tj.github.io/commander.js/#Command.prototype.action" target="_blank" rel="external">commander</a></li>
+<li>sass命令行实战 简书地址：<a href="http://www.jianshu.com/p/2cae952250d1" target="_blank" rel="external">Node.js+commander开发命令行工具</a></li>
+<li>node自动构件化项目 慕课地址:<a href="http://www.imooc.com/article/3156" target="_blank" rel="external">前端扫盲-之打造一个Node命令行工具</a>    </li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;学习资源&quot;&gt;&lt;a href=&quot;#学习资源&quot; class=&quot;headerlink&quot; title=&quot;学习资源&quot;&gt;&lt;/a&gt;学习资源&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;commander github地址：&lt;a href=&quot;http://tj.github.io/commande
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="node" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/node/"/>
+    
+    
+      <category term="node" scheme="http://frontendzzf.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一节babel安装</title>
+    <link href="http://frontendzzf.com/2016/11/12/%E7%AC%AC%E4%B8%80%E8%8A%82babel%E5%AE%89%E8%A3%85/"/>
+    <id>http://frontendzzf.com/2016/11/12/第一节babel安装/</id>
+    <published>2016-11-12T09:40:44.000Z</published>
+    <updated>2016-11-12T11:17:54.323Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="e6学习"><a href="#e6学习" class="headerlink" title="e6学习"></a>e6学习</h1><h2 id="第一节babel安装"><a href="#第一节babel安装" class="headerlink" title="第一节babel安装"></a>第一节babel安装</h2><p>参考地址<br><a href="http://babeljs.io/" target="_blank" rel="external">babel官网</a><br><a href="http://guoyongfeng.github.io/idoc/html/React%E8%AF%BE%E7%A8%8B%E4%B8%93%E9%A2%98/Babel%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.html#t14babel-runtime" target="_blank" rel="external">郭永峰博客</a></p>
+<ol>
+<li><p>安装babel命令行  </p>
+<p> 全局安装</p>
+<pre><code>npm install babel-cli -g  
+</code></pre><p> 本地安装  </p>
+<pre><code>npm install --save-dev babel-cli
+</code></pre><p> 然后进行设置在package.json中添加 </p>
+<pre><code>{
+    &quot;scripts: {  
+        &quot;build&quot;: &quot;babel src -d lib&quot;
+    }
+}
+</code></pre><p> 然后运行<code>npm run build</code>命令即可。  </p>
+<p> 简单解释下命令行：    </p>
+<pre><code>babel lesson1.js --out-file lesson1-compiled.js  
+</code></pre><p> 表示输出转译lesson1.js到lesson1-compiled.js文件  </p>
+<pre><code>babel src --out-dir lib  
+</code></pre><p> 表示转译src文件夹下的所有文件到lib文件夹下  </p>
+</li>
+<li><p>编译插件<br> 使用步骤一中的命令实际为原样输出，这是因为没有安装相应的插件。官网提示安装最新的插件<code>babel-preset-latest</code>. </p>
+<pre><code>npm install --save-dev babel-preset-latest  
+</code></pre><p> 然后添加到<code>.babelrc</code>配置文件中</p>
+<pre><code>{
+    &quot;presets&quot;: [
+        &quot;latest&quot;
+    ]
+}
+</code></pre><p>babel默认只转化新的JavaScript语法（syntax），而不转化新的API，比如Iterator，Generator，Set，Maps，Proxy，Reflect，Symbol，Promise等，详情查看<a href="https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/definitions.js" target="_blank" rel="external">definitions.js</a>.<br>为了使用最新的API，安装腻子polyfill插件  </p>
+<pre><code>npm instaall --save-dev babel-polyfill
+</code></pre><p> 使用的文件顶部引入</p>
+<pre><code>import &quot;babel-polyfill&quot;;
+</code></pre></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;e6学习&quot;&gt;&lt;a href=&quot;#e6学习&quot; class=&quot;headerlink&quot; title=&quot;e6学习&quot;&gt;&lt;/a&gt;e6学习&lt;/h1&gt;&lt;h2 id=&quot;第一节babel安装&quot;&gt;&lt;a href=&quot;#第一节babel安装&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="es6" scheme="http://frontendzzf.com/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>es6学习环境搭建</title>
+    <link href="http://frontendzzf.com/2016/11/12/es6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://frontendzzf.com/2016/11/12/es6学习环境搭建/</id>
+    <published>2016-11-12T09:40:44.000Z</published>
+    <updated>2016-11-13T06:27:41.354Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="e6学习"><a href="#e6学习" class="headerlink" title="e6学习"></a>e6学习</h1><h2 id="第二节-学习es6环境搭建"><a href="#第二节-学习es6环境搭建" class="headerlink" title="第二节 学习es6环境搭建"></a>第二节 学习es6环境搭建</h2><ol>
+<li><p>gulp 任务配置检测文件变化<br>gulpfile.js配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">gulpLoadPlugins = <span class="built_in">require</span>(<span class="string">'gulp-load-plugins'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> plugins = gulpLoadPlugins();</div><div class="line"></div><div class="line">gulp.task(<span class="string">'babel'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> gulp.src(<span class="string">"src/**/*.js"</span>)</div><div class="line">		.pipe(plugins.babel())</div><div class="line">		.pipe(gulp.dest(<span class="string">"lib"</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'watch'</span>, [<span class="string">'babel'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	gulp.watch(<span class="string">'src/**/*.js'</span>, [<span class="string">'babel'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>nodemon自动运行。<br>nodemon.json配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">  <span class="string">"restartable"</span>: <span class="string">"rs"</span>,</div><div class="line">  <span class="string">"ignore"</span>: [</div><div class="line">    <span class="string">".git"</span>,</div><div class="line">    <span class="string">"node_modules/**/node_modules"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"verbose"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"execMap"</span>: &#123;</div><div class="line">    <span class="string">"js"</span>: <span class="string">"node --harmony"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"events"</span>: &#123;</div><div class="line">    <span class="string">"restart"</span>: <span class="string">"osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"watch"</span>: [</div><div class="line">    <span class="string">"lib/**/*.js"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"env"</span>: &#123;</div><div class="line">    <span class="string">"NODE_ENV"</span>: <span class="string">"development"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"ext"</span>: <span class="string">"js json"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行代码，只需要<code>nodemon lib/lesson1.js</code></p>
+</li>
+<li><p>node.js对es6的支持情况93%，详情参考<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="external">e6支持</a> .</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;e6学习&quot;&gt;&lt;a href=&quot;#e6学习&quot; class=&quot;headerlink&quot; title=&quot;e6学习&quot;&gt;&lt;/a&gt;e6学习&lt;/h1&gt;&lt;h2 id=&quot;第二节-学习es6环境搭建&quot;&gt;&lt;a href=&quot;#第二节-学习es6环境搭建&quot; class=&quot;headerlink
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="es6" scheme="http://frontendzzf.com/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React笔记</title>
+    <link href="http://frontendzzf.com/2016/10/12/React%E7%AC%94%E8%AE%B0/"/>
+    <id>http://frontendzzf.com/2016/10/12/React笔记/</id>
+    <published>2016-10-12T07:31:17.000Z</published>
+    <updated>2016-10-12T07:36:52.573Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><p>参考文档。</p>
+<p>  英文官网:<a href="https://facebook.github.io/react/docs/why-react.html" target="_blank" rel="external">https://facebook.github.io/react/docs/why-react.html</a><br>  中文: <a href="https://facebook.github.io/react/docs/why-react-zh-CN.html" target="_blank" rel="external">https://facebook.github.io/react/docs/why-react-zh-CN.html</a></p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考文档。&lt;/p&gt;
+&lt;p&gt;  英文官网:&lt;a href=&quot;https://facebook.github.io/react/docs/why-react.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://facebo
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="集成方案" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/"/>
+    
+    
+      <category term="React" scheme="http://frontendzzf.com/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>highcharts经验之谈一</title>
+    <link href="http://frontendzzf.com/2016/09/13/highcharts%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88%E4%B8%80/"/>
+    <id>http://frontendzzf.com/2016/09/13/highcharts经验之谈一/</id>
+    <published>2016-09-13T10:37:56.000Z</published>
+    <updated>2016-09-21T07:41:37.311Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><p>怎么改变highart type为折线图line时，设置legend symbol的方法。</p>
+<p>  两种方式:</p>
+<p>  <a href="http://stackoverflow.com/questions/27510810/highcharts-make-the-legend-symbol-a-square-or-rectangle" target="_blank" rel="external">google方案</a></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Highcharts.seriesTypes.line.prototype.drawLegendSymbol =</div><div class="line">     Highcharts.seriesTypes.area.prototype.drawLegendSymbol;</div><div class="line"></div><div class="line">chart: &#123;</div><div class="line"></div><div class="line">      events: &#123;</div><div class="line">          load: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              $(<span class="string">".highcharts-legend-item path"</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">          &#125;,</div><div class="line">          redraw: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              $(<span class="string">".highcharts-legend-item path"</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<ul>
+<li><p>怎么对齐legend文字与symbol</p>
+<p>1.在面积图areachart下实现对齐,默认情况下当改变legend的text文本时，symbol就会与text发生位置移，此时首先想到的方案自然是改变legend的itemStyle，</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">itemStyle: CSSObject</div><div class="line">CSS styles <span class="keyword">for</span> each legend item. Only a subset <span class="keyword">of</span> CSS is supported, notably those options related to text.</div><div class="line">Defaults to &#123; <span class="string">"color"</span>: <span class="string">"#333333"</span>, <span class="string">"cursor"</span>: <span class="string">"pointer"</span>, <span class="string">"fontSize"</span>: <span class="string">"12px"</span>, <span class="string">"fontWeight"</span>: <span class="string">"bold"</span> &#125;.</div></pre></td></tr></table></figure>
+<p>可以看到itemStyle并没有关于css的position相关属性，不甘心？？试试呗！是可以的，可以的么？神奇的是，itemStyle的marginTop没有作用，但是hover上去后，鼠标再移开后， 奇迹才发生，对齐了，marginTop产生了效果，然并卵，并不是我们想要的。</p>
+<p>经试验，此时使用useHTML：true，改变text的svg渲染方式，使用html标签渲染，可以实现对齐。</p>
+<p>完整代码实现，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">legend: &#123;</div><div class="line">     layout: <span class="string">'horizontal'</span>,</div><div class="line">     align: <span class="string">'center'</span>,</div><div class="line">     symbolRadius: <span class="number">0</span>,</div><div class="line">     symbolHeight: <span class="number">16</span>,</div><div class="line">     symbolWidth: <span class="number">16</span>,</div><div class="line"></div><div class="line">    itemStyle: &#123;</div><div class="line">         color: <span class="string">'#66686C'</span>,</div><div class="line">         fontSize: <span class="string">'14px'</span>,</div><div class="line">         lineHeight: <span class="string">'14px'</span>,</div><div class="line">         fontWeight: <span class="string">'normal'</span>,</div><div class="line">         fontFamily: <span class="string">'microsoft yahei'</span></div><div class="line">     &#125;,</div><div class="line">     itemHoverStyle: &#123;</div><div class="line">         color: <span class="string">'#1E2330'</span>,</div><div class="line">         fontSize: <span class="string">'14px'</span></div><div class="line">     &#125;,</div><div class="line">     useHTML: <span class="literal">true</span>,</div><div class="line">     verticalAlign: <span class="string">'bottom'</span>,</div><div class="line">     borderWidth: <span class="number">0</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>  2.在linechart下实现symbol与text对齐，上文中提到了linechart下实现symbol为正方形的实现方案。由于默认linechart legend的symbol不存在symbol为方形的情况，实际上linechart下会发现，当text的font-size14px时，symbol与text明显是底部对齐，与我们的设计湿们的效果不一样啊。</p>
+<p>  此处到了转折点：</p>
+<p>场景1，默认symbol，产品接受，设计师接受，使用areachart下的对齐方案即可，useHTML的方式；</p>
+<p>场景2，设计师必须要方形square，先马上几行上文提到的代码，实现方形呗，useHTML：false,没有错，一定是false，垂直居中对齐了。。</p>
+<p>场景3, 场景2埋下了当时炸弹啊，坑有些深啊，通过我们的设计，切换tab时，发现在第一个tab下areachart与第三个tab下linechart时，轻微抖动，拿工具量量呗，X轴有2~3px的偏移，反复试验，跟chart的type无关，而是useHTML：true，与useHTML：false两种情况下发生的，这可怎么办？？首先，为了不抖动，果断改变useHTML：true，3个tab下的chart必须统一啊！再去检查代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;g <span class="class"><span class="keyword">class</span></span>=<span class="string">"highcharts-legend"</span> zIndex=<span class="string">"7"</span> transform=<span class="string">"translate(272,275)"</span>&gt;&lt;g zIndex="1"&gt;&lt;g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#00cc26"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(197,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#0067ed"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(386,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#002982"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;</div></pre></td></tr></table></figure>
+<p>发现useHTML：true后，legend的symbol与text是分离的，这里g.highcharts-legend只控制legend symbol的位置了，而且是通过transform的translate控制位置的，那就easy了，直接仿照上文中实现方形的两个事件load和redraw中，改变tramslateY属性就可以了嘛！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line"><span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line"><span class="keyword">if</span>(translateInit) &#123;</div><div class="line">	<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">	translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">&#125;</div><div class="line">$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line"></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
+<p>革命尚未成功，同志仍需努力。是真的，是真的，坑又出现了，上面的逻辑，是在load与redrew事件中的，redrew，redrew，问题就出现在这里，redrew不仅在window resize情况下，highchart是支持点击legend后，当前legend多代表的series data（数据列）隐藏掉的，再次单击，重现出现（redrew事件触发了），会发现，使用，symbol跑上去了，多次点击，越跑越远，方案解决中。。。<br>已解决<br>添加标示flag，<br>完整代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> legendClicked = <span class="literal">false</span>;  <span class="comment">//标示位</span></div><div class="line"><span class="keyword">var</span> legendClickHandler = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> visibleSeries = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.chart.series.length; i++) &#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.chart.series[i].visible) &#123;</div><div class="line">			visibleSeries++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (visibleSeries === <span class="number">1</span> &amp;&amp; event.target.visible) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">	legendClicked = <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line">chart: &#123;</div><div class="line">	events: &#123;</div><div class="line">		load: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">			<span class="comment">/*</span></div><div class="line">			* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">			*/</div><div class="line">			<span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line">			<span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line">			<span class="keyword">if</span>(translateInit) &#123;</div><div class="line">				<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">				translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">			&#125;</div><div class="line">			$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line"></div><div class="line">			$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">			$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-height'</span>, <span class="number">16</span>);</div><div class="line">		&#125;,</div><div class="line">		redraw: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">			<span class="comment">/*</span></div><div class="line">			* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">			*/</div><div class="line">			<span class="keyword">if</span>(!legendClicked) &#123;</div><div class="line">				<span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line">				<span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line">				<span class="keyword">if</span>(translateInit) &#123;</div><div class="line">					<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">					translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">				&#125;</div><div class="line">					$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line">				&#125;</div><div class="line">				legendClicked = <span class="literal">false</span>;</div><div class="line"></div><div class="line">				$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">				$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-height'</span>, <span class="number">16</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">options.plotOptions = &#123;</div><div class="line">		series: &#123;</div><div class="line">		    events: &#123;</div><div class="line">				legendItemClick: legendClickHandler</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>怎么设置x轴坐标点的间隔为4</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">xAxis: &#123;</div><div class="line">    labels: &#123;</div><div class="line">        step: <span class="number">4</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>total字段在area stack中存在，在line中处理方式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在area stack为default下，</span></div><div class="line"><span class="keyword">this</span>.points[<span class="number">0</span>].total;<span class="comment">//total指的是stack值相同的累积和</span></div><div class="line"><span class="comment">//在line chart</span></div><div class="line">$.each(<span class="keyword">this</span>.points, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    total += <span class="keyword">this</span>.y;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
+<ul>
+<li>tooltip的坑好深<br>tooltip是highcharts里高大上的玩意，由于api中的formater函数，强大的不得了。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    Callback <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">format</span> <span class="title">the</span> <span class="title">text</span> <span class="title">of</span> <span class="title">the</span> <span class="title">tooltip</span>. <span class="title">Return</span> <span class="title">false</span> <span class="title">to</span> <span class="title">disable</span> <span class="title">tooltip</span> <span class="title">for</span> <span class="title">a</span> <span class="title">specific</span> <span class="title">point</span> <span class="title">on</span> <span class="title">series</span>.</span></div><div class="line"></div><div class="line"><span class="title">A</span> <span class="title">subset</span> <span class="title">of</span> <span class="title">HTML</span> <span class="title">is</span> <span class="title">supported</span>. <span class="title">The</span> <span class="title">HTML</span> <span class="title">of</span> <span class="title">the</span> <span class="title">tooltip</span> <span class="title">is</span> <span class="title">parsed</span> <span class="title">and</span> <span class="title">converted</span> <span class="title">to</span> <span class="title">SVG</span>, <span class="title">therefore</span> <span class="title">this</span> <span class="title">isn</span>'<span class="title">t</span> <span class="title">a</span> <span class="title">complete</span> <span class="title">HTML</span> <span class="title">renderer</span>. <span class="title">The</span> <span class="title">following</span> <span class="title">tabs</span> <span class="title">are</span> <span class="title">supported</span>: &lt;<span class="title">b</span>&gt;, &lt;<span class="title">strong</span>&gt;, &lt;<span class="title">i</span>&gt;, &lt;<span class="title">em</span>&gt;, &lt;<span class="title">br</span>/&gt;, &lt;<span class="title">span</span>&gt;. <span class="title">Spans</span> <span class="title">can</span> <span class="title">be</span> <span class="title">styled</span> <span class="title">with</span> <span class="title">a</span> <span class="title">style</span> <span class="title">attribute</span>, <span class="title">but</span> <span class="title">only</span> <span class="title">text</span>-<span class="title">related</span> <span class="title">CSS</span> <span class="title">that</span> <span class="title">is</span> <span class="title">shared</span> <span class="title">with</span> <span class="title">SVG</span> <span class="title">is</span> <span class="title">handled</span>.</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
+<p>  坑在哪里呢，formatter实现，默认效果，tooltip每行前是对应legend symbol的，使用了formatter，只能html实现。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sbody += <span class="string">'&lt;span style="background-color: '</span> + <span class="keyword">this</span>.series.color + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure></p>
+<p>为什么还说是坑呢？开始使用的方案（google下搜索的），直接使用特殊字符（word下的特殊字符），方形的，谁让电脑分辨率差啊，设计师同学说，你那分明是长方形了，只能ctrl+，放大浏览器，果然，果然。。。</p>
+<p>tooltip这么顺利么？NO！怎么可能！视觉走查，你的tooltip怎么消失的有延迟啊，有延迟。好吧，可是哪里有问题呢，N久，没有解决，最后听了另一个小组的同学的方案，把tooltip的backgroundColor属性改为transparent，在formater里设置background，好了，好了。据说，是他的导师的建议，果然是老司机。 致敬老司机。</p>
+<p>tooltip坑，继续！tooltip在点很多的情况下，性能如此之差，插件tooltip delay before display，无非就是处理频发触发。。</p>
+<ul>
+<li>设计师的slash，在面积图中使用斜线<br>查遍了api，没有！还好，在highcharts的官网下提供了插件（隐藏的很深，在head头的最右侧plugins，pattern-fill插件，改变svg绘制，实现。<br>源码中核心<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Highcharts.wrap(Highcharts.SVGElement.prototype, <span class="string">'fillSetter'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">proceed, color, prop, elem</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> markup,</div><div class="line">		id,</div><div class="line">		pattern,</div><div class="line">		image;</div><div class="line">	<span class="keyword">if</span> (color &amp;&amp; color.pattern &amp;&amp; prop === <span class="string">'fill'</span>) &#123;</div><div class="line">		id = <span class="string">'highcharts-pattern-'</span> + idCounter++;</div><div class="line">		pattern = <span class="keyword">this</span>.renderer.createElement(<span class="string">'pattern'</span>)</div><div class="line">			.attr(&#123;</div><div class="line">				id: id,</div><div class="line">				patternUnits: <span class="string">'userSpaceOnUse'</span>,</div><div class="line">				width: color.width,</div><div class="line">				height: color.height</div><div class="line">			&#125;)</div><div class="line">			.add(<span class="keyword">this</span>.renderer.defs);</div><div class="line">		image = <span class="keyword">this</span>.renderer.image(</div><div class="line">			color.pattern, <span class="number">0</span>, <span class="number">0</span>, color.width, color.height</div><div class="line">		).add(pattern);</div><div class="line">		elem.setAttribute(prop, <span class="string">'url('</span> + <span class="keyword">this</span>.renderer.url + <span class="string">'#'</span> + id + <span class="string">')'</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> proceed.call(<span class="keyword">this</span>, color, prop, elem);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>具体实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//填充斜线</span></div><div class="line">data[m].fillColor = &#123;</div><div class="line">	width:<span class="number">6</span>,</div><div class="line">	height: <span class="number">6</span>,</div><div class="line">	pattern: <span class="string">'/static_proxy/ad/src/themes/qidian/phone/images/stripe.png'</span></div><div class="line">&#125;;</div><div class="line"><span class="comment">//color斜线，legend Symbol便能以斜线显示，但是注意此时不能显示豆点</span></div><div class="line">data[m].color = &#123;</div><div class="line">	width:<span class="number">6</span>,</div><div class="line">	height: <span class="number">6</span>,</div><div class="line">	pattern: <span class="string">'/static_proxy/ad/src/themes/qidian/phone/images/stripe.png'</span>,\</div><div class="line">	parentColor: <span class="string">'#CCF5D4'</span>  <span class="comment">//透明度后的颜色</span></div><div class="line">&#125;;</div><div class="line">marker: &#123;</div><div class="line">	enabled: <span class="literal">false</span>,</div><div class="line">&#125;,</div><div class="line"><span class="comment">//tooltip斜线显示</span></div><div class="line">tooltip: &#123;</div><div class="line">	formatter: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> s = <span class="string">'&lt;div style="margin-bottom: 5px"&gt;'</span> + <span class="keyword">this</span>.x + <span class="string">'&lt;/div&gt;'</span>;</div><div class="line"></div><div class="line">		$.each(<span class="keyword">this</span>.points, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span>(<span class="keyword">this</span>.series.color &amp;&amp; <span class="keyword">this</span>.series.color.pattern) &#123;</div><div class="line">				s += <span class="string">'&lt;span style="background-image: url('</span> + <span class="keyword">this</span>.series.color.pattern + <span class="string">');background-color:'</span>     +<span class="keyword">this</span>.series.color.parentColor + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span>+ <span class="keyword">this</span>.series.name + <span class="string">': '</span> + <span class="keyword">this</span>.y + <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">			&#125;<span class="keyword">else</span> &#123;</div><div class="line">				s += <span class="string">'&lt;span style="background-color: '</span> + <span class="keyword">this</span>.series.color + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span>+ <span class="keyword">this</span>.series.name + <span class="string">': '</span> + <span class="keyword">this</span>.y + <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> <span class="string">'&lt;div style="background:#1E2330;padding:10px;border-radius:2px;"&gt;'</span> + s + <span class="string">'&lt;/div&gt;'</span>;</div><div class="line">	&#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<ul>
+<li>linechart下的平均线</li>
+</ul>
+<p>场景：linechart，3条刻度线gridline即可，0%，avg%（平均值），100%；</p>
+<pre><code>方案一：首选plotline方案，也是通常的考虑方式，弊端（不宜控制label的x，y位置）
+
+方案二: 直接tickPosition控制，因为场景特殊，三个tickpostion很容易实现，完美！
+</code></pre><ul>
+<li>loading问题</li>
+</ul>
+<p>直接代码，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">loading: &#123;</div><div class="line">   labelStyle: &#123;</div><div class="line">        backgroundImage: <span class="string">'url("/static_proxy/ad/src/themes/qidian/phone/images/loading2.gif")'</span>,</div><div class="line">        position: <span class="string">'absolute'</span>,</div><div class="line">        display: <span class="string">'block'</span>,</div><div class="line">        width: <span class="string">'30px'</span>,</div><div class="line">        height: <span class="string">'30px'</span>,</div><div class="line">	    marginLeft: <span class="string">'-15px'</span>,</div><div class="line">        left: <span class="string">'50%'</span></div><div class="line">   &#125;,</div><div class="line">	style: &#123;</div><div class="line">        backgroundColor: <span class="string">'white'</span>,</div><div class="line">        opacity: <span class="number">0.8</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>loading相关方法，this.chart.showLoading();this.chart.hideLoading();</p>
+<ul>
+<li>优先级问题</li>
+</ul>
+<p>科普一下，查阅highcharts api发现，很多配置项是重复的，所以相同的配置会出现优先级问题，highcharts的优先级是，series &gt; plotOptions.* &gt; plotOptions.series</p>
+<p>在实际应用中，尤其是一个容器中包含多个chart的情况下，合理利用优先级，可以大大减少代码量。针对图表的常用配置，通过，plotOptions.series设置，对于所有相同类型的图表的设置，建议通过plotOptions.<em>设置，针对特定一个图表的设置，通过series设置。组件化开发，一定注意优先级问题，将通用config放在plotOptions.</em>设置。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;怎么改变highart type为折线图line时，设置legend symbol的方法。&lt;/p&gt;
+&lt;p&gt;  两种方式:&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://stackoverflow.com/questions/27510810/highc
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="highcharts" scheme="http://frontendzzf.com/tags/highcharts/"/>
+    
+  </entry>
+  
+</feed>

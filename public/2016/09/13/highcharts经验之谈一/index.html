@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>highcharts经验之谈一 | 前端匠心</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="http://www.frontendzzf.com/favicon.ico" type="image/x-icon">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="highcharts">
+  <meta name="description" content="怎么改变highart type为折线图line时，设置legend symbol的方法。
+  两种方式:
+  google方案
+
+
+1234567891011121314Highcharts.seriesTypes.line.prototype.drawLegendSymbol =     Highcharts.seriesTypes.area.prototype.drawLegendSymb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="highcharts经验之谈一">
+<meta property="og:url" content="http://frontendzzf.com/2016/09/13/highcharts经验之谈一/index.html">
+<meta property="og:site_name" content="前端匠心">
+<meta property="og:description" content="怎么改变highart type为折线图line时，设置legend symbol的方法。
+  两种方式:
+  google方案
+
+
+1234567891011121314Highcharts.seriesTypes.line.prototype.drawLegendSymbol =     Highcharts.seriesTypes.area.prototype.drawLegendSymb">
+<meta property="og:updated_time" content="2016-09-21T07:41:37.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="highcharts经验之谈一">
+<meta name="twitter:description" content="怎么改变highart type为折线图line时，设置legend symbol的方法。
+  两种方式:
+  google方案
+
+
+1234567891011121314Highcharts.seriesTypes.line.prototype.drawLegendSymbol =     Highcharts.seriesTypes.area.prototype.drawLegendSymb">
+  
+    <link rel="alternative" href="/atom.xml" title="前端匠心" type="application/atom+xml">
+  
+  <meta name="summary" content="真正的匠者，一定在某个领域做到虚心、恒心、细心，才能完成真正意义上的创新，这种创新是浴火后的新生，是锤炼后的淬火，更是一种水到渠成的洒脱心态。">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/profile.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">webfrontzhifei</h5>
+        <a href="mailto:906831852@qq.com" title="906831852@qq.com" class="mail">906831852@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/webfrontzhifei" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.frontendzzf.com/" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>前端匠心 &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">highcharts经验之谈一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">highcharts经验之谈一</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-09-13T10:37:56.000Z" itemprop="datePublished" class="page-time">
+  2016-09-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/前端/">前端</a></li></ul></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-highcharts经验之谈一" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/highcharts/">highcharts</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <ul>
+<li><p>怎么改变highart type为折线图line时，设置legend symbol的方法。</p>
+<p>  两种方式:</p>
+<p>  <a href="http://stackoverflow.com/questions/27510810/highcharts-make-the-legend-symbol-a-square-or-rectangle" target="_blank" rel="external">google方案</a></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Highcharts.seriesTypes.line.prototype.drawLegendSymbol =</div><div class="line">     Highcharts.seriesTypes.area.prototype.drawLegendSymbol;</div><div class="line"></div><div class="line">chart: &#123;</div><div class="line"></div><div class="line">      events: &#123;</div><div class="line">          load: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              $(<span class="string">".highcharts-legend-item path"</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">          &#125;,</div><div class="line">          redraw: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              $(<span class="string">".highcharts-legend-item path"</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<ul>
+<li><p>怎么对齐legend文字与symbol</p>
+<p>1.在面积图areachart下实现对齐,默认情况下当改变legend的text文本时，symbol就会与text发生位置移，此时首先想到的方案自然是改变legend的itemStyle，</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">itemStyle: CSSObject</div><div class="line">CSS styles <span class="keyword">for</span> each legend item. Only a subset <span class="keyword">of</span> CSS is supported, notably those options related to text.</div><div class="line">Defaults to &#123; <span class="string">"color"</span>: <span class="string">"#333333"</span>, <span class="string">"cursor"</span>: <span class="string">"pointer"</span>, <span class="string">"fontSize"</span>: <span class="string">"12px"</span>, <span class="string">"fontWeight"</span>: <span class="string">"bold"</span> &#125;.</div></pre></td></tr></table></figure>
+<p>可以看到itemStyle并没有关于css的position相关属性，不甘心？？试试呗！是可以的，可以的么？神奇的是，itemStyle的marginTop没有作用，但是hover上去后，鼠标再移开后， 奇迹才发生，对齐了，marginTop产生了效果，然并卵，并不是我们想要的。</p>
+<p>经试验，此时使用useHTML：true，改变text的svg渲染方式，使用html标签渲染，可以实现对齐。</p>
+<p>完整代码实现，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">legend: &#123;</div><div class="line">     layout: <span class="string">'horizontal'</span>,</div><div class="line">     align: <span class="string">'center'</span>,</div><div class="line">     symbolRadius: <span class="number">0</span>,</div><div class="line">     symbolHeight: <span class="number">16</span>,</div><div class="line">     symbolWidth: <span class="number">16</span>,</div><div class="line"></div><div class="line">    itemStyle: &#123;</div><div class="line">         color: <span class="string">'#66686C'</span>,</div><div class="line">         fontSize: <span class="string">'14px'</span>,</div><div class="line">         lineHeight: <span class="string">'14px'</span>,</div><div class="line">         fontWeight: <span class="string">'normal'</span>,</div><div class="line">         fontFamily: <span class="string">'microsoft yahei'</span></div><div class="line">     &#125;,</div><div class="line">     itemHoverStyle: &#123;</div><div class="line">         color: <span class="string">'#1E2330'</span>,</div><div class="line">         fontSize: <span class="string">'14px'</span></div><div class="line">     &#125;,</div><div class="line">     useHTML: <span class="literal">true</span>,</div><div class="line">     verticalAlign: <span class="string">'bottom'</span>,</div><div class="line">     borderWidth: <span class="number">0</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>  2.在linechart下实现symbol与text对齐，上文中提到了linechart下实现symbol为正方形的实现方案。由于默认linechart legend的symbol不存在symbol为方形的情况，实际上linechart下会发现，当text的font-size14px时，symbol与text明显是底部对齐，与我们的设计湿们的效果不一样啊。</p>
+<p>  此处到了转折点：</p>
+<p>场景1，默认symbol，产品接受，设计师接受，使用areachart下的对齐方案即可，useHTML的方式；</p>
+<p>场景2，设计师必须要方形square，先马上几行上文提到的代码，实现方形呗，useHTML：false,没有错，一定是false，垂直居中对齐了。。</p>
+<p>场景3, 场景2埋下了当时炸弹啊，坑有些深啊，通过我们的设计，切换tab时，发现在第一个tab下areachart与第三个tab下linechart时，轻微抖动，拿工具量量呗，X轴有2~3px的偏移，反复试验，跟chart的type无关，而是useHTML：true，与useHTML：false两种情况下发生的，这可怎么办？？首先，为了不抖动，果断改变useHTML：true，3个tab下的chart必须统一啊！再去检查代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;g <span class="class"><span class="keyword">class</span></span>=<span class="string">"highcharts-legend"</span> zIndex=<span class="string">"7"</span> transform=<span class="string">"translate(272,275)"</span>&gt;&lt;g zIndex="1"&gt;&lt;g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#00cc26"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(197,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#0067ed"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;g class="highcharts-legend-item" zIndex="1" transform="translate(386,3)"&gt;&lt;rect x="0" y="12" width="16" height="16" zIndex="3" fill="#002982"&gt;&lt;/rect&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;</div></pre></td></tr></table></figure>
+<p>发现useHTML：true后，legend的symbol与text是分离的，这里g.highcharts-legend只控制legend symbol的位置了，而且是通过transform的translate控制位置的，那就easy了，直接仿照上文中实现方形的两个事件load和redraw中，改变tramslateY属性就可以了嘛！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line"><span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line"><span class="keyword">if</span>(translateInit) &#123;</div><div class="line">	<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">	translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">&#125;</div><div class="line">$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line"></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
+<p>革命尚未成功，同志仍需努力。是真的，是真的，坑又出现了，上面的逻辑，是在load与redrew事件中的，redrew，redrew，问题就出现在这里，redrew不仅在window resize情况下，highchart是支持点击legend后，当前legend多代表的series data（数据列）隐藏掉的，再次单击，重现出现（redrew事件触发了），会发现，使用，symbol跑上去了，多次点击，越跑越远，方案解决中。。。<br>已解决<br>添加标示flag，<br>完整代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> legendClicked = <span class="literal">false</span>;  <span class="comment">//标示位</span></div><div class="line"><span class="keyword">var</span> legendClickHandler = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> visibleSeries = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.chart.series.length; i++) &#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.chart.series[i].visible) &#123;</div><div class="line">			visibleSeries++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (visibleSeries === <span class="number">1</span> &amp;&amp; event.target.visible) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">	legendClicked = <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line">chart: &#123;</div><div class="line">	events: &#123;</div><div class="line">		load: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">			<span class="comment">/*</span></div><div class="line">			* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">			*/</div><div class="line">			<span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line">			<span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line">			<span class="keyword">if</span>(translateInit) &#123;</div><div class="line">				<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">				translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">			&#125;</div><div class="line">			$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line"></div><div class="line">			$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">			$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-height'</span>, <span class="number">16</span>);</div><div class="line">		&#125;,</div><div class="line">		redraw: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">			<span class="comment">/*</span></div><div class="line">			* 这段逻辑是为了处理legend symbol与text不对齐问题，hack方法，改变tranlateY，上移3px</div><div class="line">			*/</div><div class="line">			<span class="keyword">if</span>(!legendClicked) &#123;</div><div class="line">				<span class="keyword">var</span> $legend = $(host).find(<span class="string">'.highcharts-legend'</span>).eq(<span class="number">0</span>);</div><div class="line">				<span class="keyword">var</span> translateInit = $legend.attr(<span class="string">'transform'</span>);</div><div class="line">				<span class="keyword">if</span>(translateInit) &#123;</div><div class="line">					<span class="keyword">var</span> translateY = <span class="built_in">parseInt</span>(translateInit.slice(translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>, <span class="number">-1</span>));</div><div class="line">					translateInit = translateInit.slice(<span class="number">0</span>, translateInit.indexOf(<span class="string">','</span>)+<span class="number">1</span>) + (translateY<span class="number">-3</span>) + <span class="string">')'</span>;</div><div class="line">				&#125;</div><div class="line">					$legend.attr(<span class="string">'transform'</span>, translateInit);</div><div class="line">				&#125;</div><div class="line">				legendClicked = <span class="literal">false</span>;</div><div class="line"></div><div class="line">				$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-width'</span>, <span class="number">16</span>);</div><div class="line">				$(<span class="string">'.highcharts-legend-item path'</span>).attr(<span class="string">'stroke-height'</span>, <span class="number">16</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">options.plotOptions = &#123;</div><div class="line">		series: &#123;</div><div class="line">		    events: &#123;</div><div class="line">				legendItemClick: legendClickHandler</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>怎么设置x轴坐标点的间隔为4</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">xAxis: &#123;</div><div class="line">    labels: &#123;</div><div class="line">        step: <span class="number">4</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>total字段在area stack中存在，在line中处理方式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在area stack为default下，</span></div><div class="line"><span class="keyword">this</span>.points[<span class="number">0</span>].total;<span class="comment">//total指的是stack值相同的累积和</span></div><div class="line"><span class="comment">//在line chart</span></div><div class="line">$.each(<span class="keyword">this</span>.points, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    total += <span class="keyword">this</span>.y;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure>
+<ul>
+<li>tooltip的坑好深<br>tooltip是highcharts里高大上的玩意，由于api中的formater函数，强大的不得了。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    Callback <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">format</span> <span class="title">the</span> <span class="title">text</span> <span class="title">of</span> <span class="title">the</span> <span class="title">tooltip</span>. <span class="title">Return</span> <span class="title">false</span> <span class="title">to</span> <span class="title">disable</span> <span class="title">tooltip</span> <span class="title">for</span> <span class="title">a</span> <span class="title">specific</span> <span class="title">point</span> <span class="title">on</span> <span class="title">series</span>.</span></div><div class="line"></div><div class="line"><span class="title">A</span> <span class="title">subset</span> <span class="title">of</span> <span class="title">HTML</span> <span class="title">is</span> <span class="title">supported</span>. <span class="title">The</span> <span class="title">HTML</span> <span class="title">of</span> <span class="title">the</span> <span class="title">tooltip</span> <span class="title">is</span> <span class="title">parsed</span> <span class="title">and</span> <span class="title">converted</span> <span class="title">to</span> <span class="title">SVG</span>, <span class="title">therefore</span> <span class="title">this</span> <span class="title">isn</span>'<span class="title">t</span> <span class="title">a</span> <span class="title">complete</span> <span class="title">HTML</span> <span class="title">renderer</span>. <span class="title">The</span> <span class="title">following</span> <span class="title">tabs</span> <span class="title">are</span> <span class="title">supported</span>: &lt;<span class="title">b</span>&gt;, &lt;<span class="title">strong</span>&gt;, &lt;<span class="title">i</span>&gt;, &lt;<span class="title">em</span>&gt;, &lt;<span class="title">br</span>/&gt;, &lt;<span class="title">span</span>&gt;. <span class="title">Spans</span> <span class="title">can</span> <span class="title">be</span> <span class="title">styled</span> <span class="title">with</span> <span class="title">a</span> <span class="title">style</span> <span class="title">attribute</span>, <span class="title">but</span> <span class="title">only</span> <span class="title">text</span>-<span class="title">related</span> <span class="title">CSS</span> <span class="title">that</span> <span class="title">is</span> <span class="title">shared</span> <span class="title">with</span> <span class="title">SVG</span> <span class="title">is</span> <span class="title">handled</span>.</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
+<p>  坑在哪里呢，formatter实现，默认效果，tooltip每行前是对应legend symbol的，使用了formatter，只能html实现。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sbody += <span class="string">'&lt;span style="background-color: '</span> + <span class="keyword">this</span>.series.color + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span></div><div class="line"><span class="string">`</span></div></pre></td></tr></table></figure></p>
+<p>为什么还说是坑呢？开始使用的方案（google下搜索的），直接使用特殊字符（word下的特殊字符），方形的，谁让电脑分辨率差啊，设计师同学说，你那分明是长方形了，只能ctrl+，放大浏览器，果然，果然。。。</p>
+<p>tooltip这么顺利么？NO！怎么可能！视觉走查，你的tooltip怎么消失的有延迟啊，有延迟。好吧，可是哪里有问题呢，N久，没有解决，最后听了另一个小组的同学的方案，把tooltip的backgroundColor属性改为transparent，在formater里设置background，好了，好了。据说，是他的导师的建议，果然是老司机。 致敬老司机。</p>
+<p>tooltip坑，继续！tooltip在点很多的情况下，性能如此之差，插件tooltip delay before display，无非就是处理频发触发。。</p>
+<ul>
+<li>设计师的slash，在面积图中使用斜线<br>查遍了api，没有！还好，在highcharts的官网下提供了插件（隐藏的很深，在head头的最右侧plugins，pattern-fill插件，改变svg绘制，实现。<br>源码中核心<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Highcharts.wrap(Highcharts.SVGElement.prototype, <span class="string">'fillSetter'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">proceed, color, prop, elem</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> markup,</div><div class="line">		id,</div><div class="line">		pattern,</div><div class="line">		image;</div><div class="line">	<span class="keyword">if</span> (color &amp;&amp; color.pattern &amp;&amp; prop === <span class="string">'fill'</span>) &#123;</div><div class="line">		id = <span class="string">'highcharts-pattern-'</span> + idCounter++;</div><div class="line">		pattern = <span class="keyword">this</span>.renderer.createElement(<span class="string">'pattern'</span>)</div><div class="line">			.attr(&#123;</div><div class="line">				id: id,</div><div class="line">				patternUnits: <span class="string">'userSpaceOnUse'</span>,</div><div class="line">				width: color.width,</div><div class="line">				height: color.height</div><div class="line">			&#125;)</div><div class="line">			.add(<span class="keyword">this</span>.renderer.defs);</div><div class="line">		image = <span class="keyword">this</span>.renderer.image(</div><div class="line">			color.pattern, <span class="number">0</span>, <span class="number">0</span>, color.width, color.height</div><div class="line">		).add(pattern);</div><div class="line">		elem.setAttribute(prop, <span class="string">'url('</span> + <span class="keyword">this</span>.renderer.url + <span class="string">'#'</span> + id + <span class="string">')'</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> proceed.call(<span class="keyword">this</span>, color, prop, elem);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>具体实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//填充斜线</span></div><div class="line">data[m].fillColor = &#123;</div><div class="line">	width:<span class="number">6</span>,</div><div class="line">	height: <span class="number">6</span>,</div><div class="line">	pattern: <span class="string">'/static_proxy/ad/src/themes/qidian/phone/images/stripe.png'</span></div><div class="line">&#125;;</div><div class="line"><span class="comment">//color斜线，legend Symbol便能以斜线显示，但是注意此时不能显示豆点</span></div><div class="line">data[m].color = &#123;</div><div class="line">	width:<span class="number">6</span>,</div><div class="line">	height: <span class="number">6</span>,</div><div class="line">	pattern: <span class="string">'/static_proxy/ad/src/themes/qidian/phone/images/stripe.png'</span>,\</div><div class="line">	parentColor: <span class="string">'#CCF5D4'</span>  <span class="comment">//透明度后的颜色</span></div><div class="line">&#125;;</div><div class="line">marker: &#123;</div><div class="line">	enabled: <span class="literal">false</span>,</div><div class="line">&#125;,</div><div class="line"><span class="comment">//tooltip斜线显示</span></div><div class="line">tooltip: &#123;</div><div class="line">	formatter: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> s = <span class="string">'&lt;div style="margin-bottom: 5px"&gt;'</span> + <span class="keyword">this</span>.x + <span class="string">'&lt;/div&gt;'</span>;</div><div class="line"></div><div class="line">		$.each(<span class="keyword">this</span>.points, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">			<span class="keyword">if</span>(<span class="keyword">this</span>.series.color &amp;&amp; <span class="keyword">this</span>.series.color.pattern) &#123;</div><div class="line">				s += <span class="string">'&lt;span style="background-image: url('</span> + <span class="keyword">this</span>.series.color.pattern + <span class="string">');background-color:'</span>     +<span class="keyword">this</span>.series.color.parentColor + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span>+ <span class="keyword">this</span>.series.name + <span class="string">': '</span> + <span class="keyword">this</span>.y + <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">			&#125;<span class="keyword">else</span> &#123;</div><div class="line">				s += <span class="string">'&lt;span style="background-color: '</span> + <span class="keyword">this</span>.series.color + <span class="string">';margin-right: 8px; width: 10px;height: 10px;display: inline-block;"&gt;'</span> + <span class="string">''</span> + <span class="string">'&lt;/span&gt;'</span>+ <span class="keyword">this</span>.series.name + <span class="string">': '</span> + <span class="keyword">this</span>.y + <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> <span class="string">'&lt;div style="background:#1E2330;padding:10px;border-radius:2px;"&gt;'</span> + s + <span class="string">'&lt;/div&gt;'</span>;</div><div class="line">	&#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<ul>
+<li>linechart下的平均线</li>
+</ul>
+<p>场景：linechart，3条刻度线gridline即可，0%，avg%（平均值），100%；</p>
+<pre><code>方案一：首选plotline方案，也是通常的考虑方式，弊端（不宜控制label的x，y位置）
+
+方案二: 直接tickPosition控制，因为场景特殊，三个tickpostion很容易实现，完美！
+</code></pre><ul>
+<li>loading问题</li>
+</ul>
+<p>直接代码，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">loading: &#123;</div><div class="line">   labelStyle: &#123;</div><div class="line">        backgroundImage: <span class="string">'url("/static_proxy/ad/src/themes/qidian/phone/images/loading2.gif")'</span>,</div><div class="line">        position: <span class="string">'absolute'</span>,</div><div class="line">        display: <span class="string">'block'</span>,</div><div class="line">        width: <span class="string">'30px'</span>,</div><div class="line">        height: <span class="string">'30px'</span>,</div><div class="line">	    marginLeft: <span class="string">'-15px'</span>,</div><div class="line">        left: <span class="string">'50%'</span></div><div class="line">   &#125;,</div><div class="line">	style: &#123;</div><div class="line">        backgroundColor: <span class="string">'white'</span>,</div><div class="line">        opacity: <span class="number">0.8</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>loading相关方法，this.chart.showLoading();this.chart.hideLoading();</p>
+<ul>
+<li>优先级问题</li>
+</ul>
+<p>科普一下，查阅highcharts api发现，很多配置项是重复的，所以相同的配置会出现优先级问题，highcharts的优先级是，series &gt; plotOptions.* &gt; plotOptions.series</p>
+<p>在实际应用中，尤其是一个容器中包含多个chart的情况下，合理利用优先级，可以大大减少代码量。针对图表的常用配置，通过，plotOptions.series设置，对于所有相同类型的图表的设置，建议通过plotOptions.<em>设置，针对特定一个图表的设置，通过series设置。组件化开发，一定注意优先级问题，将通用config放在plotOptions.</em>设置。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://frontendzzf.com/2016/09/13/highcharts经验之谈一/" target="_blank" rel="external">http://frontendzzf.com/2016/09/13/highcharts经验之谈一/</a>
+                </p>
+                <footer><cite><a href="http://frontendzzf.com">@前端匠心</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/10/12/React笔记/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">React笔记</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="highcharts经验之谈一" data-title="highcharts经验之谈一" data-url="http://frontendzzf.com/2016/09/13/highcharts经验之谈一/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"frontendzzf"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "highcharts经验之谈一",
+    pic: "/img/profile.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://frontendzzf.com/2016/09/13/highcharts经验之谈一/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
