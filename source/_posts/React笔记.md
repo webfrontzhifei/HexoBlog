@@ -4,6 +4,7 @@ date: 2016-10-12 15:31:17
 tags:
 - React
 comments: true
+description: 本文主要是结合自己最近学习react的相关参考资料记录，以及自己后续的一些react的补充，系属于React系列文章。
 categories:
 - 技术
 - 前端

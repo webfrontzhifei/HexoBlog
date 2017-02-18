@@ -4,6 +4,7 @@ date: 2016-11-26 14:48:58
 tags:
 - node
 comments: true
+description: node经典模块的收集
 categories:
 - 技术
 - 前端
@@ -20,6 +21,8 @@ categories:
 * 解析、格式化日期时间[moment](https://www.npmjs.com/package/moment)
 * nodejs抓取页面，封装了jQuery[cheerio](https://www.npmjs.com/package/cheerio)
 * 网络请求模块[request](https://www.npmjs.com/package/request)
+* 网络请求[superagent](https://www.npmjs.com/package/superagent)
+* ajax请求[node-fetch](https://www.npmjs.com/package/node-fetch)
 ### 异步相关
 * promise实现模块[bluebird](https://www.npmjs.com/package/bluebird)
 * 异步控制[async](https://www.npmjs.com/package/async)

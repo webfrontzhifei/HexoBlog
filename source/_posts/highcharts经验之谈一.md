@@ -4,6 +4,7 @@ date: 2016-09-13 18:37:56
 tags:
 - highcharts
 comments: true
+description: 本文主要是结合了在腾讯企点实习期间，做数据分析需求时所遇到的一些问题的经验总结。
 categories:
 - 技术
 - 前端

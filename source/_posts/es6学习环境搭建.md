@@ -4,12 +4,13 @@ date: 2016-11-12 17:40:44
 tags:
 - es6
 comments: true
+description: 系属es6学习系列文章，本章节主要是es6学习环境的搭建，通过gulp watch监控文件变化，然后自动运行babel任务，nodemon重新运行文件。
 categories:
 - 技术
 - 前端
 ---
-# e6学习
-## 第二节 学习es6环境搭建
+### e6学习系列
+#### 第二节 学习es6环境搭建
 1.	gulp 任务配置检测文件变化
 	gulpfile.js配置
 	```javascript

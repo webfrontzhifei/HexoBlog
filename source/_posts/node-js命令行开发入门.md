@@ -4,6 +4,7 @@ date: 2016-11-23 16:35:25
 tags:
 - node
 comments: true
+description: 一直在gulp，grunt命令行中懵懵懂懂，向往已久，终于有了这篇命令行开发。也打开了之前的误区，yeoman 命令行开发是框架结构，而本文中的才是根本。开发命令行，完全可以不需要yeoman。另外本文中的博客命令行实战，也明朗了hexo博客的内核。后续会分析hexo博客源码。
 categories:
 - 技术
 - 前端
@@ -15,6 +16,7 @@ categories:
 * node自动构件化项目 慕课地址:[前端扫盲-之打造一个Node命令行工具](http://www.imooc.com/article/3156)
 
 # 实战项目
+[项目源码](https://github.com/webfrontzhifei/blogFrame)
 命令行工具---开发一个静态博客系统(参考《Node.js实战》)
 1. 编写命令行
 项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：
@@ -118,7 +120,7 @@ program.parse(process.argv);
   生成静态博客build命令,基本过程同上，只是将ejs根据模板渲染后的html，通过fs-extra模块进行写文件。同时通过open模块打开浏览器。
 4. create命令
   创建新博客create命令，通过将必须的文件结构，放在tpl文件夹下，通过fs-extra模块的mkdir命令创建目录，通过moment模块处理时间，创建一个新博客的hello-world第一篇博客。
-5.第三方服务
+5. 第三方服务
   * 评论组件
     多说组件[多说](http://duoshuo.com/)
     Disqus[Disqus](https://disqus.com)

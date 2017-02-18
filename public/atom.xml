@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://frontendzzf.com/"/>
-  <updated>2016-11-26T07:15:42.794Z</updated>
+  <updated>2016-12-07T11:16:27.515Z</updated>
   <id>http://frontendzzf.com/</id>
   
   <author>
@@ -16,11 +16,266 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JS测试</title>
+    <link href="http://frontendzzf.com/2016/12/06/JS%E6%B5%8B%E8%AF%95/"/>
+    <id>http://frontendzzf.com/2016/12/06/JS测试/</id>
+    <published>2016-12-06T12:04:58.000Z</published>
+    <updated>2016-12-07T11:16:27.515Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="断言库"><a href="#断言库" class="headerlink" title="断言库"></a>断言库</h3><p>  &nbsp;&nbsp;&nbsp;&nbsp;要学习JS测试，首先要学习的就是断言assert。Node.js提供了assert 模块api，但是功能有限。</p>
+<ol>
+<li><p>chai–TDD（测试驱动开发）/BDD（行为驱动开发）的框架<br> 略提一下：BDD的expect/should风格语义性更强，而TDD风格的assert测试驱动开发，先写测试用例，再开发。</p>
+<h4 id="assertion-style"><a href="#assertion-style" class="headerlink" title="assertion style"></a>assertion style</h4><ol>
+<li><p>assert<br> assert与其他两种的区别是，不能链式调用。它与nodejs的内置<a href="https://nodejs.org/dist/latest-v7.x/docs/api/assert.html" target="_blank" rel="external">assert</a>接口相似，只是增添了一些功能。<br> <a href="http://chaijs.com/api/assert/" target="_blank" rel="external">assert api</a><br> 注意，</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">assert(<span class="string">'foo'</span> ==<span class="string">'bar'</span>, <span class="string">'foo is not equal bar'</span>);</div></pre></td></tr></table></figure>
+<p> 运行结果：<br> <img src="./assertionError1.png" alt=""><br> assert没有返回值，如果assert不为true，就直接抛出assertionError</p>
+</li>
+<li><p>BDD style</p>
+<ul>
+<li><p>Expect<br><a href="http://chaijs.com/api/bdd/" target="_blank" rel="external">Expect/Should API</a><br>简介：<br>连接谓词：to,be,been,is,that,which,and,has,have,with,at,of,same;这些词设置语义化，没有实质上的作用。<br>demo：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</div><div class="line">expect(foo).to.that.a(<span class="string">'string'</span>);</div></pre></td></tr></table></figure>
+<p>与</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</div><div class="line">expect(foo).to.been.a(<span class="string">'string'</span>);</div></pre></td></tr></table></figure>
+<p>没有区别。</p>
+<ol>
+<li>.not跟在链式调用后的否定断言</li>
+<li>.deep为equal与property断言增加deep flag</li>
+<li>.any为key断言增加any flag</li>
+<li>.all位keys断言增加all flag</li>
+<li>.a(type)–别名.an,断言param的type</li>
+<li>.include(value)–别名.contain,断言array中的元素，String的substring，当用于object时，则转变为于.keys断言的contains flag</li>
+<li>.ok断言truthy</li>
+<li>.true断言true（与.ok的区别在于，.true只能为true，而.ok可以是Boolean(value)转换后的值，因此expect(true).to.be.true,而expect(1).to.be.true或抛出AssertionError</li>
+<li>.false断言false，与.true相对</li>
+<li>.null断言null</li>
+<li>.undefined断言undefined</li>
+<li>.NaN断言NaN</li>
+<li>.exist断言（除null与undefined之外）</li>
+<li>.empty断言（string的length，array的length为0，object的enumberable keys的length为0）</li>
+<li>.arguments断言为函数参数</li>
+<li><p>.equal(value)对比是否严格相等，当添加了deep标记，就只比较值是否相等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">expect(&#123; foo: <span class="string">'bar'</span> &#125;).to.not.equal(&#123; foo: <span class="string">'bar'</span> &#125;);</div><div class="line">expect(&#123; foo: <span class="string">'bar'</span> &#125;).to.deep.equal(&#123; foo: <span class="string">'bar'</span> &#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>.eql(value)等价于.deep.equal(value)</p>
+</li>
+<li>.above(value)用于直接比较number类型大小以及配合.length.above(value)使用</li>
+<li>.least(value)great than equal</li>
+<li>.below(value)less than</li>
+<li>.most(value) less than equal</li>
+<li>.within(start, finish) number大小在start-finish内，以及配合.length.within(start, finish)使用<br>……</li>
+</ol>
+</li>
+<li><p>Should<br>Should与expect使用同一套接口，API相同，用法略有不同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expect = <span class="built_in">require</span>(<span class="string">'chai'</span>).expect;</div><div class="line"><span class="keyword">var</span> should = <span class="built_in">require</span>(<span class="string">'chai'</span>).should();</div><div class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</div><div class="line">expect(foo).to.be.a(<span class="string">'string'</span>);</div><div class="line">foo.should.be.a(<span class="string">'string'</span>);</div></pre></td></tr></table></figure>
+<p>另外：should因为是继承自object.prototype,因此如果为null或者undefined情况下，foo.should将会报错。这种情况下，通过以下方式：</p>
+<ul>
+<li>should.exist</li>
+<li>should.not.exist</li>
+<li>should.equal</li>
+<li>should.not.equal</li>
+<li>should.Throw</li>
+<li>should.not.Throw</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> should = <span class="built_in">require</span>(<span class="string">'chai'</span>).should();</div><div class="line">db.get(<span class="number">1234</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, doc</span>) </span>&#123;</div><div class="line">    should.not.exist(err);</div><div class="line">    should.exist(doc);</div><div class="line">    doc.should.be.an(<span class="string">'object'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>mocha框架（此章节参考了阮一峰的测试框架Mocha实例教程）<br><a href="http://mochajs.org/" target="_blank" rel="external">mocha 官网</a><br><a href="http://www.cnblogs.com/Leo_wl/p/5734889.html" target="_blank" rel="external">测试框架mochajs详解</a><br><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架 Mocha 实例教程</a><br>google搜索了n久，遗憾的是没有mocha的标准文档说明describe，it的用法。这里，暂时以阮老师的文档中为参考。<br> <a href="http://chaijs.com/api/bdd/" target="_blank" rel="external">chai API文档</a><br> <a href="https://github.com/chaijs/chai" target="_blank" rel="external">github chai</a><br> 简易demo</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// add.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> x + y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = add;</div></pre></td></tr></table></figure>
+<p> 测试脚本要与被测试的源码脚本同名，上文中add.js对应的文件为add.test.js或者add.spec.js（表示规格）</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="built_in">require</span>(<span class="string">'./add.js'</span>);</div><div class="line"><span class="keyword">var</span> expect = <span class="built_in">require</span>(<span class="string">'chai'</span>).expect;</div><div class="line"></div><div class="line">describe(<span class="string">'加法函数的测试'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  it(<span class="string">'1 加 1 应该等于 2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    expect(add(<span class="number">1</span>, <span class="number">1</span>)).to.be.equal(<span class="number">2</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p> 测试脚本，可以独立执行，它包含一个或者多个describe块，每个describe块应该包括一个或者多个it块。<br> describe块称为“测试套件”（test suite），表示一组相关的测试集合。两个参数，第一个参数是suite的描述，第二个是实际执行的函数。<br> it块称为“测试用例”（test case），表示一个单独的测试，是测试的最小单位，两个参数，第一个参数为测试用例的名称，第二个参数为实际执行的函数。<br> mocha命令运行：<br> <img src="./mocha1.png" alt=""><br> 习惯一般将测试脚本放在test目录下，而mocha命令默认会运行test目录下的所有测试文件。也就是，不指定路径，直接运行mocha命令，macha会去test下寻找文件。<br> 例如，文件结构如下，<br> <img src="./mocha2.png" alt=""><br> 直接运行mocha命令，结果<br> <img src="./mocha3.png" alt=""><br> 从结果中可以看到，只运行了test下的文件，而子目录dir下的文件并没有运行。<br> 通过给mocha命令添加参数recursive，可以改变这一行为。<br> <img src="./mocha4.png" alt=""><br> 其他内容参考阮一峰的10个demo，并运行一遍，即可掌握。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://wiki.jikexueyuan.com/project/node-lessons/mocha-should-istanbul.html" target="_blank" rel="external">测试用例：mocha，should，istanbul</a><br><a href="http://www.imooc.com/article/2631" target="_blank" rel="external">单元测试工具Mocha和SuperTest</a><br><a href="http://www.shaynegui.com/javascript-unit-test-chaijs/" target="_blank" rel="external">js单元测试断言框架chaijs</a> </p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      都在提倡测试驱动开发，一直以来对测试不太重视，现在有时间梳理一下...
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node.js" scheme="http://frontendzzf.com/tags/node-js/"/>
+    
+      <category term="js" scheme="http://frontendzzf.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>debug模块知多少</title>
+    <link href="http://frontendzzf.com/2016/12/06/debug%E6%A8%A1%E5%9D%97%E7%9F%A5%E5%A4%9A%E5%B0%91/"/>
+    <id>http://frontendzzf.com/2016/12/06/debug模块知多少/</id>
+    <published>2016-12-06T07:41:17.000Z</published>
+    <updated>2016-12-06T09:08:04.443Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="node自带debug"><a href="#node自带debug" class="headerlink" title="node自带debug"></a>node自带debug</h3><p>  有详细的文档，就不多说了。<br>  <a href="http://nodejs.cn/doc/node/debugger.html" target="_blank" rel="external">Debugger模块</a></p>
+<h3 id="debug-模块"><a href="#debug-模块" class="headerlink" title="debug 模块"></a>debug 模块</h3><p>  debug模块主要用于log打印信息（个人感觉作用不大）。<br>  唯一注意的地方是：windows环境下命令行，set DEBUG=mydebug:*  &amp;  node app.js<br>  <a href="https://github.com/visionmedia/debug" target="_blank" rel="external">debug</a></p>
+<h3 id="webstorm调试"><a href="#webstorm调试" class="headerlink" title="webstorm调试"></a>webstorm调试</h3><p>  直接使用webstorm打断点，最实用！！！</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>  <a href="http://www.tuicool.com/articles/Fzyaa2" target="_blank" rel="external">开始学nodejs——调试篇</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      忽然想用debug了，却忘记了怎么用，记录一下吧...
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node.js" scheme="http://frontendzzf.com/tags/node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>electron入门</title>
+    <link href="http://frontendzzf.com/2016/12/01/electron%E5%85%A5%E9%97%A8/"/>
+    <id>http://frontendzzf.com/2016/12/01/electron入门/</id>
+    <published>2016-12-01T11:41:15.000Z</published>
+    <updated>2016-12-01T12:55:34.474Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>  <a href="https://segmentfault.com/a/1190000005692430" target="_blank" rel="external">Electron入门介绍</a><br>  <a href="https://github.com/electron/electron" target="_blank" rel="external">Electron github</a><br>  <a href="http://get.ftqq.com/7870.get" target="_blank" rel="external">Electron概述</a><br>  <a href="https://zhuanlan.zhihu.com/p/20225295?columnSlug=FrontendMagazine" target="_blank" rel="external">使用Electron构建桌面应用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      electron入门创建桌面应用。
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node.js" scheme="http://frontendzzf.com/tags/node-js/"/>
+    
+      <category term="electron" scheme="http://frontendzzf.com/tags/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>koa入门</title>
+    <link href="http://frontendzzf.com/2016/11/29/koa%E5%85%A5%E9%97%A8/"/>
+    <id>http://frontendzzf.com/2016/11/29/koa入门/</id>
+    <published>2016-11-29T13:21:50.000Z</published>
+    <updated>2016-12-06T11:45:50.940Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第一个app"><a href="#第一个app" class="headerlink" title="第一个app"></a>第一个app</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">let</span> koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">let</span> app = koa();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>*(<span class="params">next</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'1'</span>);</div><div class="line">	<span class="keyword">yield</span> next;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'5'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>*(<span class="params">next</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'2'</span>);</div><div class="line">	<span class="keyword">yield</span> next;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'4'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>*(<span class="params">next</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'3'</span>);</div><div class="line">	<span class="keyword">this</span>.body = <span class="string">'hello world'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">4000</span>);</div></pre></td></tr></table></figure>
+<p>  上述代码运行结果为1，2，3，4，5。显而易见，运行顺序为第一个中间件yield之前，然后运行第二个中间件yield之前，然后运行第三个中间件yield之前。</p>
+<h3 id="koa中间件机制"><a href="#koa中间件机制" class="headerlink" title="koa中间件机制"></a>koa中间件机制</h3><p>  中间件的实质运行是什么呢？推理，能产生上述顺序的只有一种generator function机制。我们知道co库可以yieldable的对象是generator function，promise，array等。当为generator function时，就会是如下的顺序。<br> 例如： </p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gen1 = <span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="built_in">console</span>.log(<span class="string">'1'</span>);</div><div class="line"> <span class="keyword">yield</span> gen2;</div><div class="line"> <span class="built_in">console</span>.log(<span class="string">'5'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> gen2 = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2'</span>);</div><div class="line">  <span class="keyword">yield</span> gen3;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'4'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> gen3 = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'3'</span>);</div><div class="line">&#125;</div><div class="line">co(<span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> gen1;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p> 为了容易理解，就是<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gen1 = <span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>);</div><div class="line">  <span class="keyword">yield</span> <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">             <span class="built_in">console</span>.log(<span class="string">'2'</span>);</div><div class="line">             <span class="keyword">yield</span> <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">                        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</div><div class="line">                      &#125;;</div><div class="line">             <span class="built_in">console</span>.log(<span class="string">'4'</span>);</div><div class="line">           &#125;;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'5'</span>);</div><div class="line"> &#125;</div><div class="line"> co(<span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">yield</span> gen1;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure></p>
+<p> 将上述代码中的每个gen提取为next参数，那么就是<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gen1 = <span class="function"><span class="keyword">function</span> * (<span class="params">next</span>) </span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'1'</span>);</div><div class="line">   <span class="keyword">yield</span> next;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">'5'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> gen2 = <span class="function"><span class="keyword">function</span>* (<span class="params">next</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</div><div class="line">    <span class="keyword">yield</span> next;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'4'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> gen3 = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'3'</span>);</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p> 因此，koa中间件的机制，无非就是将后面一个中间件generatorFunction作为next参数穿给前一个中间件。<br> 也就是gen1的next参数为gen2，gen2的next参数为gen3.</p>
+<h3 id="简易SimpleKoa"><a href="#简易SimpleKoa" class="headerlink" title="简易SimpleKoa"></a>简易SimpleKoa</h3> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">'co'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SimpleKoa</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">this</span>.middlewares = [];</div><div class="line">&#125;</div><div class="line">SimpleKoa.prototype.use = <span class="function"><span class="keyword">function</span>(<span class="params">mw</span>) </span>&#123;</div><div class="line"> <span class="keyword">this</span>.middlewares.push(mw);</div><div class="line">&#125;</div><div class="line">SimpleKoa.prototype.listen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">this</span>._run();</div><div class="line">&#125;</div><div class="line">SimpleKoa.prototype._run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">var</span> ctx = <span class="keyword">this</span>;</div><div class="line"> <span class="keyword">var</span> middlewares = ctx.middlewares;</div><div class="line"> <span class="keyword">return</span> co(<span class="function"><span class="keyword">function</span> *(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> prev = <span class="literal">null</span>;</div><div class="line">   <span class="keyword">var</span> i = middlewares.length;</div><div class="line">   </div><div class="line">   <span class="comment">//依次遍历，将next参数传入。</span></div><div class="line">   <span class="keyword">while</span>(i--) &#123;</div><div class="line">     prev = middlewares[i].call(ctx, prev);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">yield</span> prev;</div><div class="line"> &#125;);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> simpleKoa();</div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<h3 id="自定义koa中间件timer"><a href="#自定义koa中间件timer" class="headerlink" title="自定义koa中间件timer"></a>自定义koa中间件timer</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// middleware/timer.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> *(<span class="params">next</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> path = <span class="keyword">this</span>.path;</div><div class="line">    <span class="keyword">const</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">    <span class="keyword">yield</span> next;</div><div class="line">    <span class="keyword">const</span> end = <span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;path&#125;</span> response time: <span class="subst">$&#123; end - start &#125;</span>ms`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//app.js</span></div><div class="line"><span class="keyword">const</span> timer = <span class="built_in">require</span>(<span class="string">'./middleware/timer.js'</span>);</div><div class="line">app.use(timer());</div></pre></td></tr></table></figure>
+<p>  如果为timer中间件加上option配置参数，那么就可以改为如下<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>* (<span class="params">next</span>) </span>&#123;</div><div class="line">		<span class="keyword">const</span> path = <span class="keyword">this</span>.path;</div><div class="line">		<span class="keyword">const</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">		<span class="keyword">const</span> method = <span class="keyword">this</span>.request.method;</div><div class="line">		<span class="keyword">if</span>(method != options.filter.method)</div><div class="line">			start = <span class="number">0</span>;</div><div class="line">		<span class="keyword">yield</span> next;</div><div class="line">		<span class="keyword">const</span> end = <span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">		<span class="keyword">if</span>(start !== <span class="number">0</span> &amp;&amp; end-start &gt; options.filter.min) &#123;</div><div class="line">			<span class="built_in">console</span>.log(options.format.replace(<span class="regexp">/:url/g</span>, path).replace(<span class="regexp">/:time/g</span>,<span class="string">`<span class="subst">$&#123;end-start&#125;</span>ms`</span>));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//app.js</span></div><div class="line">app.use(timer(&#123;</div><div class="line">    format: <span class="string">':url :time'</span>,</div><div class="line">    filter: &#123;</div><div class="line">        min: <span class="number">0</span>,</div><div class="line">        method: <span class="string">'GET'</span></div><div class="line">    &#125;</div><div class="line">&#125;));</div></pre></td></tr></table></figure></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>  <a href="http://koa.bootcss.com/" target="_blank" rel="external">koa文档</a><br>  <a href="http://book.apebook.org/minghe/koa-action/start/router.html" target="_blank" rel="external">gitbook1</a><br>  <a href="http://www.jianshu.com/p/07008bc834c5" target="_blank" rel="external">半小时掌握koa</a><br>  <a href="http://www.jianshu.com/p/225ff3e8fa18" target="_blank" rel="external">koa技术分享</a><br>  <a href="https://github.com/alexmingoia/koa-router" target="_blank" rel="external">koa-router</a></p>
+<h3 id="koa-examples分析Examples"><a href="#koa-examples分析Examples" class="headerlink" title="koa examples分析Examples"></a>koa examples分析<a href="https://github.com/koajs/examples" target="_blank" rel="external">Examples</a></h3><ol>
+<li><p>404</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = <span class="built_in">module</span>.exports = koa();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span> *<span class="title">pageNotFound</span>(<span class="params">next</span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> next;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="number">404</span> != <span class="keyword">this</span>.status) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">  <span class="comment">// we need to explicitly set 404 here</span></div><div class="line">  <span class="comment">// so that koa doesn't assign 200 on body=</span></div><div class="line">  <span class="keyword">this</span>.status = <span class="number">404</span>;</div><div class="line"></div><div class="line">  <span class="keyword">switch</span> (<span class="keyword">this</span>.accepts(<span class="string">'html'</span>, <span class="string">'json'</span>)) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'html'</span>:</div><div class="line">      <span class="keyword">this</span>.type = <span class="string">'html'</span>;</div><div class="line">      <span class="keyword">this</span>.body = <span class="string">'&lt;p&gt;Page Not Found&lt;/p&gt;'</span>;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> <span class="string">'json'</span>:</div><div class="line">      <span class="keyword">this</span>.body = &#123;</div><div class="line">        message: <span class="string">'Page Not Found'</span></div><div class="line">      &#125;;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">this</span>.type = <span class="string">'text'</span>;</div><div class="line">      <span class="keyword">this</span>.body = <span class="string">'Page Not Found'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!<span class="built_in">module</span>.parent) app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp; &nbsp;&nbsp;代码中两处地方值得思考，首先判断this.status != 404,直接return,这说明上文中已经有了this.body的响应。注意，判断this.status == 404后，又显式进行this.status = 404赋值的原因是，在下文switch语句块中对this.body进行了赋值，在koa的内部机制中，当this.body有值时，this.status会默认赋值为200，除非显式的进行明确对this.status赋值。<br>&nbsp;&nbsp; &nbsp;&nbsp;另外，最后一句代码module.parent是require该模块的模块，也就是只有该模块没有被require调用，而是直接调用时，才进行app.listen(3000);</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      一直在用Express，对koa一直不曾触碰，忍不住要入门了，作为紧跟前端技术的菜鸟，飞...
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node.js" scheme="http://frontendzzf.com/tags/node-js/"/>
+    
+      <category term="web框架" scheme="http://frontendzzf.com/tags/web%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="koa系列" scheme="http://frontendzzf.com/tags/koa%E7%B3%BB%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>co深入理解</title>
+    <link href="http://frontendzzf.com/2016/11/29/co%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
+    <id>http://frontendzzf.com/2016/11/29/co深入理解/</id>
+    <published>2016-11-29T13:05:37.000Z</published>
+    <updated>2016-12-02T11:20:09.613Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="co介绍"><a href="#co介绍" class="headerlink" title="co介绍"></a>co介绍</h3><p>  个人理解：解决Generator自动运行问题，使代码更加优雅。原文：Generator based control flow goodness for nodejs and the browser, using promises, letting you write non-blocking code in a nice-ish way.</p>
+<h3 id="co-API"><a href="#co-API" class="headerlink" title="co API"></a>co API</h3><p>  原文：<br>  co@4.0.0 has been released, which now relies on promises. It is a stepping stone towards the async/await proposal. The primary API change is how co() is invoked. Before, co returned a “thunk”, which you then called with a callback and optional arguments. Now, co() returns a promise.<br>  co从4.0.0版本后，开始依赖promise。这是为了以后更方便向es7的async/await转移。API主要发生的变化时，以前co()调用后返回的是一个thunk函数（只有一个参数，而且这个参数只能是callback），现在返回的是promise对象。</p>
+<p> co(fn*).then(val =&gt; )，Returns a promise that resolves a generator, generator function, or any function that returns a generator.<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">co(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">yield</span> <span class="built_in">Promise</span>.resolve(<span class="literal">true</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(val);</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.error(err.stack);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="co深入原理"><a href="#co深入原理" class="headerlink" title="co深入原理"></a>co深入原理</h3><p>  例如，Generator函数，读取两个文件。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'atom.html'</span>);</div><div class="line">  <span class="built_in">console</span>.log(f1.toString());</div><div class="line">  <span class="keyword">var</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'package.json'</span>);</div><div class="line">  <span class="built_in">console</span>.log(f2.toString());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  使用co函数库，可是不用编写Generator函数的执行器<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> co = <span class="built_in">require</span>(<span class="string">'co'</span>);</div><div class="line">co(gen).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Generator 自动执行'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>  co函数库的原理就是将两个自动执行器(thunk函数和Promise对象),包装成一个库，使用co的前提，Generator函数的yield命令后面只能是（Thunk函数或者Promise对象）。</p>
+<p>  下面介绍promise自动执行器，将上例中的readFile包装成一个Promise对象。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> readFile = <span class="function"><span class="keyword">function</span>(<span class="params">path</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    fs.readFile(path, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(err)&#123;</div><div class="line">        reject(err);</div><div class="line">      &#125;<span class="keyword">else</span> &#123;</div><div class="line">        resolve(data);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'atom.html'</span>);</div><div class="line">  <span class="built_in">console</span>.log(f1.toString());</div><div class="line">  <span class="keyword">var</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'package.json'</span>);</div><div class="line">  <span class="built_in">console</span>.log(f2.toString());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  如果，手动自行上述Generator函数。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> g = gen();</div><div class="line">g.next().value.then(<span class="function"><span class="keyword">function</span>(<span class="params">f1</span>)</span>&#123;</div><div class="line">  g.next(f1).value.then(<span class="function"><span class="keyword">function</span>(<span class="params">f2</span>) </span>&#123;</div><div class="line">    g.next(f2);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>  将上述过程用一个函数run自动执行，也就是<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">gen</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> g = gen();</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = g.next(data);</div><div class="line">    <span class="keyword">if</span>(result.done)</div><div class="line">      <span class="keyword">return</span> result.value;</div><div class="line">    result.value.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">      next(data);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  next();</div><div class="line">&#125;</div><div class="line"></div><div class="line">run(gen);</div></pre></td></tr></table></figure></p>
+<p>  上述也就是Generator函数的自动执行过程。而co库就是做了这样一件事情。</p>
+<h3 id="co源码分析"><a href="#co源码分析" class="headerlink" title="co源码分析"></a>co源码分析</h3><p>  首先，co函数参数为Generator函数，返回一个Promise对象。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">co</span>(<span class="params">gen</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  在返回的Promise对象里，co先检查参数gen是否为Generator函数。如果是，就执行，生个generator生成器对象，否则返回，修改状态为resolved。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">co</span>(<span class="params">gen</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> gen === <span class="string">'function'</span>)&#123;</div><div class="line">      gen = gen.call(ctx);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(!gen || <span class="keyword">typeof</span> gen.next != <span class="string">'function'</span>) &#123;</div><div class="line">      <span class="keyword">return</span> resolve(gen);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  接着，co将Generator函数的自动执行方法（上文中的run）中的next方法，包装成为了onFulfilled（）方法，主要是为了捕捉异常抛出的错误。而next()逻辑同上。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">co</span>(<span class="params">gen</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> gen === <span class="string">'function'</span>)&#123;</div><div class="line">      gen = gen.call(ctx);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(!gen || <span class="keyword">typeof</span> gen.next != <span class="string">'function'</span>) &#123;</div><div class="line">      <span class="keyword">return</span> resolve(gen);</div><div class="line">    &#125;</div><div class="line">    onFulfilled();</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onFulfilled</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> ret;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        ret = gen.next(res);</div><div class="line">      &#125;<span class="keyword">catch</span>(e) &#123;</div><div class="line">        <span class="keyword">return</span> reject(e);</div><div class="line">      &#125;</div><div class="line">      next(ret);</div><div class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onRejected</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> ret;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        ret = gen.throw(err);</div><div class="line">      &#125; <span class="keyword">catch</span>(e) &#123;</div><div class="line">        <span class="keyword">return</span> reject(e);</div><div class="line">      &#125;</div><div class="line">      next(ret);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">ret</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(ret.done) <span class="keyword">return</span> resolve(ret.value);</div><div class="line">      <span class="keyword">var</span> value = toPromise.call(ctx, ret.value)</div><div class="line">      <span class="keyword">if</span>(value &amp;&amp; isPromise(value)) <span class="keyword">return</span> value.then(onFulfilled, onRejected);</div><div class="line">      <span class="keyword">return</span> onRejected(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'You may only yield a function, promise, generator, array, or object, '</span>+ <span class="string">'but the following object was passed: "'</span> + <span class="built_in">String</span>(ret.value) + <span class="string">'"'</span>));</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  核心代码也就是上述了，其他都是围绕toPromise方法了。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Convert a `yield`ed value into a promise.</div><div class="line"> *</div><div class="line"> * @param &#123;Mixed&#125; obj</div><div class="line"> * @return &#123;Promise&#125;</div><div class="line"> * @api private</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toPromise</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!obj) <span class="keyword">return</span> obj;</div><div class="line">  <span class="keyword">if</span> (isPromise(obj)) <span class="keyword">return</span> obj;</div><div class="line">  <span class="keyword">if</span> (isGeneratorFunction(obj) || isGenerator(obj)) <span class="keyword">return</span> co.call(<span class="keyword">this</span>, obj);</div><div class="line">  <span class="keyword">if</span> (<span class="string">'function'</span> == <span class="keyword">typeof</span> obj) <span class="keyword">return</span> thunkToPromise.call(<span class="keyword">this</span>, obj);</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(obj)) <span class="keyword">return</span> arrayToPromise.call(<span class="keyword">this</span>, obj);</div><div class="line">  <span class="keyword">if</span> (isObject(obj)) <span class="keyword">return</span> objectToPromise.call(<span class="keyword">this</span>, obj);</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  首先看isPromise(obj)源码进行分析,直接判断了then属性。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPromise</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'function'</span> == <span class="keyword">typeof</span> obj.then;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  然后，isGeneratorFunction(obj)判断是否为generator生成器函数。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isGeneratorFunction</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> <span class="keyword">constructor</span> = obj.<span class="keyword">constructor</span>;</div><div class="line">  if (!<span class="keyword">constructor</span>) return false;</div><div class="line">  if ('GeneratorFunction' === <span class="keyword">constructor</span>.name || 'GeneratorFunction' === <span class="keyword">constructor</span>.displayName) return true;</div><div class="line">  return isGenerator(<span class="keyword">constructor</span>.prototype);</div><div class="line">&#125;</div><div class="line">function isGenerator(obj) &#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'function'</span> == <span class="keyword">typeof</span> obj.next &amp;&amp; <span class="string">'function'</span> == <span class="keyword">typeof</span> obj.throw;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  上述理解很简单，isGeneratorFunction()首先判断obj的constructor的name属性，如果是’GeneratorFunction’，就返回true。另外，如果，该函数的原型是一个generator对象，那么这个构造函数也是。<br>  对于toPromise的第二行代码<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(isGeneratorFunction(obj) || isGenerator(obj)) <span class="keyword">return</span> co.call(<span class="keyword">this</span>, obj);</div></pre></td></tr></table></figure></p>
+<p>  将会产生迭代的效果，也就是类似于yield*的效果。<br>  demo:<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'package.json'</span>);</div><div class="line">	<span class="built_in">console</span>.log(f1);</div><div class="line">	<span class="keyword">var</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'scheme.js'</span>);</div><div class="line">	<span class="built_in">console</span>.log(f2);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen2 = <span class="function"><span class="keyword">function</span> *(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> f3 = <span class="keyword">yield</span> gen;</div><div class="line">	<span class="keyword">var</span> f4 = <span class="keyword">yield</span> readFile(<span class="string">'app.js'</span>);</div><div class="line">	<span class="built_in">console</span>.log(f4);</div><div class="line">&#125;</div><div class="line"><span class="comment">// var g = gen();</span></div><div class="line">co(gen2).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'执行完成'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>  toPromise的第三行代码,判断并转化thunk函数<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="string">'function'</span> == <span class="keyword">typeof</span> obj) <span class="keyword">return</span> thunkToPromise.call(<span class="keyword">this</span>, obj);</div></pre></td></tr></table></figure></p>
+<p>  thunkPromise源码如下：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">thunkToPromise</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    fn.call(ctx, <span class="function"><span class="keyword">function</span> (<span class="params">err, res</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> reject(err);</div><div class="line">      <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">2</span>) res = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div><div class="line">      resolve(res);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  由上述源码，很明显看到thunkToPromise(fn)就是new一个promise对象，并在fn的callback中将调用resolve(data)方法。</p>
+<p>  toPromise的第四行，数组判断。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(obj)) <span class="keyword">return</span> arrayToPromise.call(<span class="keyword">this</span>, obj);</div></pre></td></tr></table></figure></p>
+<p>  arrayToPromise的源码<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayToPromise</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(obj.map(toPromise, <span class="keyword">this</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  从上述源码Promise.all方法，可以看出，如果yield后为数组，将会并行处理异步操作。</p>
+<p>  toPromise的第5行，转化的为普通Object。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(isObject(obj)) <span class="keyword">return</span> objectToPromise.call(<span class="keyword">this</span>, obj);</div></pre></td></tr></table></figure></p>
+<p>  objectToPromise源码如下：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">objectToPromise</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> results = <span class="keyword">new</span> obj.constructor();</div><div class="line">  <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys();</div><div class="line">  <span class="keyword">var</span> promises = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> key = keys[i];</div><div class="line">    <span class="keyword">var</span> promise = toPromise.call(<span class="keyword">this</span>, obj[key]);</div><div class="line">    <span class="keyword">if</span>(promise &amp;&amp; isPromise(promise)) defer(promise, key);</div><div class="line">    <span class="keyword">else</span> results[key] = obj[key];</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">defer</span>(<span class="params">promise, key</span>) </span>&#123;</div><div class="line">      results[key] = <span class="literal">undefined</span>;</div><div class="line">      promises.push(promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">        results[key] = res;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  上述代码实质上也是通过Promise.all去并行实现调用object所有属性值转化的promise对象。但是它使用了一个defer方法也就是，在defer中定义了每个promise的then方法将结果放入到results中。可以看到在Promise.all的then回调总直接返回了results。</p>
+<p> 至此，核心API就结束了，还有一个wrap方法。<br> 源码：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">co.wrap = <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</div><div class="line">  createPromise.__generatorFunction__ = fn;</div><div class="line">  <span class="keyword">return</span> createPromise;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">createPromise</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> co.call(<span class="keyword">this</span>, fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>));</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p> 原文这样解释：Convert a generator into a regular function that returns a Promise.<br> 也就是将一个generator转化为一个产生promise的普通函数createPromise，co.call(this,fn.apply(this, arguments)),生成promise对象。同时为了绑定fn与createPromise函数之间的联系，添加了<strong>generatorFunction</strong>属性（没有查到实质的作用）。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p> 上文就是co模块的全部内容了，后续会陆续将异步编程系列的generator，promise等完成。</p>
+<h3 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h3><p>  <a href="https://github.com/tj/co" target="_blank" rel="external">co模块github</a><br>  <a href="http://www.ruanyifeng.com/blog/2015/05/co.html" target="_blank" rel="external">co函数的含义与用法—阮一峰</a><br>  <a href="http://www.cnblogs.com/jiasm/p/5800210.html" target="_blank" rel="external">co源码解读</a><br>  <a href="http://www.html-js.com/article/3016" target="_blank" rel="external">异步编程之co—源码分析</a><br>  <a href="http://purplebamboo.github.io/2014/05/24/koa-source-analytics-2/" target="_blank" rel="external">koa源码分析系列（二）co的实现</a><br>  <a href="">Node.js实战—第二季</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      异步编程系列文章，学习koa必经之路。co源码分析！！！
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="node.js" scheme="http://frontendzzf.com/tags/node-js/"/>
+    
+      <category term="异步编程系列" scheme="http://frontendzzf.com/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/"/>
+    
+      <category term="co.js" scheme="http://frontendzzf.com/tags/co-js/"/>
+    
+  </entry>
+  
+  <entry>
     <title>node模块收集</title>
     <link href="http://frontendzzf.com/2016/11/26/node%E6%A8%A1%E5%9D%97%E6%94%B6%E9%9B%86/"/>
     <id>http://frontendzzf.com/2016/11/26/node模块收集/</id>
     <published>2016-11-26T06:48:58.000Z</published>
-    <updated>2016-11-26T07:15:42.794Z</updated>
+    <updated>2016-12-07T11:59:42.974Z</updated>
     
     <content type="html"><![CDATA[<h2 id="模块收集-列表顺序随机"><a href="#模块收集-列表顺序随机" class="headerlink" title="模块收集(列表顺序随机)"></a>模块收集(列表顺序随机)</h2><ul>
 <li>解析命令行参数<a href="https://www.npmjs.com/package/commander" target="_blank" rel="external">commander</a></li>
@@ -33,7 +288,9 @@
 <li>使用系统程序打开指定文件或网址<a href="https://www.npmjs.com/package/open" target="_blank" rel="external">open</a></li>
 <li>解析、格式化日期时间<a href="https://www.npmjs.com/package/moment" target="_blank" rel="external">moment</a></li>
 <li>nodejs抓取页面，封装了jQuery<a href="https://www.npmjs.com/package/cheerio" target="_blank" rel="external">cheerio</a></li>
-<li>网络请求模块<a href="https://www.npmjs.com/package/request" target="_blank" rel="external">request</a><h3 id="异步相关"><a href="#异步相关" class="headerlink" title="异步相关"></a>异步相关</h3></li>
+<li>网络请求模块<a href="https://www.npmjs.com/package/request" target="_blank" rel="external">request</a></li>
+<li>网络请求<a href="https://www.npmjs.com/package/superagent" target="_blank" rel="external">superagent</a></li>
+<li>ajax请求<a href="https://www.npmjs.com/package/node-fetch" target="_blank" rel="external">node-fetch</a><h3 id="异步相关"><a href="#异步相关" class="headerlink" title="异步相关"></a>异步相关</h3></li>
 <li>promise实现模块<a href="https://www.npmjs.com/package/bluebird" target="_blank" rel="external">bluebird</a></li>
 <li>异步控制<a href="https://www.npmjs.com/package/async" target="_blank" rel="external">async</a><h3 id="gulp中间件"><a href="#gulp中间件" class="headerlink" title="gulp中间件"></a>gulp中间件</h3><h3 id="grunt中间件"><a href="#grunt中间件" class="headerlink" title="grunt中间件"></a>grunt中间件</h3></li>
 </ul>
@@ -41,8 +298,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;模块收集-列表顺序随机&quot;&gt;&lt;a href=&quot;#模块收集-列表顺序随机&quot; class=&quot;headerlink&quot; title=&quot;模块收集(列表顺序随机)&quot;&gt;&lt;/a&gt;模块收集(列表顺序随机)&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;解析命令行参数&lt;a href=&quot;https://ww
+      node经典模块的收集
     
     </summary>
     
@@ -60,14 +316,14 @@
     <link href="http://frontendzzf.com/2016/11/23/node-js%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/"/>
     <id>http://frontendzzf.com/2016/11/23/node-js命令行开发入门/</id>
     <published>2016-11-23T08:35:25.000Z</published>
-    <updated>2016-11-27T08:47:52.991Z</updated>
+    <updated>2016-11-30T04:51:43.697Z</updated>
     
     <content type="html"><![CDATA[<h1 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h1><ul>
 <li>commander github地址：<a href="http://tj.github.io/commander.js/#Command.prototype.action" target="_blank" rel="external">commander</a></li>
 <li>sass命令行实战 简书地址：<a href="http://www.jianshu.com/p/2cae952250d1" target="_blank" rel="external">Node.js+commander开发命令行工具</a></li>
 <li>node自动构件化项目 慕课地址:<a href="http://www.imooc.com/article/3156" target="_blank" rel="external">前端扫盲-之打造一个Node命令行工具</a></li>
 </ul>
-<h1 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h1><p>命令行工具—开发一个静态博客系统(参考《Node.js实战》)</p>
+<h1 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h1><p><a href="https://github.com/webfrontzhifei/blogFrame" target="_blank" rel="external">项目源码</a><br>命令行工具—开发一个静态博客系统(参考《Node.js实战》)</p>
 <ol>
 <li><p>编写命令行<br>项目初始化后,在根目录下新建bin子文件夹,在bin新建myblog文件，内容如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env node</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</div><div class="line"></div><div class="line">program.version(<span class="built_in">require</span>(<span class="string">'../package.json'</span>).version);</div><div class="line"></div><div class="line"><span class="comment">//help命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'help'</span>)</div><div class="line">	.description(<span class="string">'显示使用帮助'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		program.outputHelp();</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//create命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'create [dir]'</span>)</div><div class="line">	.description(<span class="string">'创建一个空的博客'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_create.js'</span>)(dir);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//preview命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'preview [dir]'</span>)</div><div class="line">	.description(<span class="string">'实时预览'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_preview.js'</span>)(dir);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"><span class="comment">//build命令</span></div><div class="line">program</div><div class="line">	.command(<span class="string">'build [dir]'</span>)</div><div class="line">	.description(<span class="string">'生成整站静态html'</span>)</div><div class="line">	.option(<span class="string">'-o, --output &lt;dir&gt;'</span>, <span class="string">'生成的静态html存放目录'</span>)</div><div class="line">	.action(<span class="function"><span class="keyword">function</span>(<span class="params">dir, options</span>) </span>&#123;</div><div class="line">		<span class="built_in">require</span>(<span class="string">'../lib/cmd_build.js'</span>)(dir, options);</div><div class="line">	&#125;);</div><div class="line"></div><div class="line"></div><div class="line">program.parse(process.argv);</div></pre></td></tr></table></figure>
@@ -87,7 +343,8 @@
 </ul>
 </li>
 <li>build命令<br>生成静态博客build命令,基本过程同上，只是将ejs根据模板渲染后的html，通过fs-extra模块进行写文件。同时通过open模块打开浏览器。</li>
-<li>create命令<br>创建新博客create命令，通过将必须的文件结构，放在tpl文件夹下，通过fs-extra模块的mkdir命令创建目录，通过moment模块处理时间，创建一个新博客的hello-world第一篇博客。<br>5.第三方服务<ul>
+<li>create命令<br>创建新博客create命令，通过将必须的文件结构，放在tpl文件夹下，通过fs-extra模块的mkdir命令创建目录，通过moment模块处理时间，创建一个新博客的hello-world第一篇博客。</li>
+<li>第三方服务<ul>
 <li>评论组件<br>多说组件<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a><br>Disqus<a href="https://disqus.com" target="_blank" rel="external">Disqus</a></li>
 <li>分享组件<br>加网<a href="http://www.jiathis.com/" target="_blank" rel="external">JiaThis</a></li>
 </ul>
@@ -97,8 +354,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;学习资源&quot;&gt;&lt;a href=&quot;#学习资源&quot; class=&quot;headerlink&quot; title=&quot;学习资源&quot;&gt;&lt;/a&gt;学习资源&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;commander github地址：&lt;a href=&quot;http://tj.github.io/commande
+      一直在gulp，grunt命令行中懵懵懂懂，向往已久，终于有了这篇命令行开发。也打开了之前的误区，yeoman 命令行开发是框架结构，而本文中的才是根本。开发命令行，完全可以不需要yeoman。另外本文中的博客命令行实战，也明朗了hexo博客的内核。后续会分析hexo博客源码。
     
     </summary>
     
@@ -114,11 +370,47 @@
   </entry>
   
   <entry>
+    <title>es6学习环境搭建</title>
+    <link href="http://frontendzzf.com/2016/11/12/es6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://frontendzzf.com/2016/11/12/es6学习环境搭建/</id>
+    <published>2016-11-12T09:40:44.000Z</published>
+    <updated>2016-11-30T04:37:22.117Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="e6学习系列"><a href="#e6学习系列" class="headerlink" title="e6学习系列"></a>e6学习系列</h3><h4 id="第二节-学习es6环境搭建"><a href="#第二节-学习es6环境搭建" class="headerlink" title="第二节 学习es6环境搭建"></a>第二节 学习es6环境搭建</h4><ol>
+<li><p>gulp 任务配置检测文件变化<br>gulpfile.js配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">gulpLoadPlugins = <span class="built_in">require</span>(<span class="string">'gulp-load-plugins'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> plugins = gulpLoadPlugins();</div><div class="line"></div><div class="line">gulp.task(<span class="string">'babel'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> gulp.src(<span class="string">"src/**/*.js"</span>)</div><div class="line">		.pipe(plugins.babel())</div><div class="line">		.pipe(gulp.dest(<span class="string">"lib"</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'watch'</span>, [<span class="string">'babel'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	gulp.watch(<span class="string">'src/**/*.js'</span>, [<span class="string">'babel'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>nodemon自动运行。<br>nodemon.json配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">  <span class="string">"restartable"</span>: <span class="string">"rs"</span>,</div><div class="line">  <span class="string">"ignore"</span>: [</div><div class="line">    <span class="string">".git"</span>,</div><div class="line">    <span class="string">"node_modules/**/node_modules"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"verbose"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"execMap"</span>: &#123;</div><div class="line">    <span class="string">"js"</span>: <span class="string">"node --harmony"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"events"</span>: &#123;</div><div class="line">    <span class="string">"restart"</span>: <span class="string">"osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"watch"</span>: [</div><div class="line">    <span class="string">"lib/**/*.js"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"env"</span>: &#123;</div><div class="line">    <span class="string">"NODE_ENV"</span>: <span class="string">"development"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"ext"</span>: <span class="string">"js json"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行代码，只需要<code>nodemon lib/lesson1.js</code></p>
+</li>
+<li><p>node.js对es6的支持情况93%，详情参考<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="external">e6支持</a> .</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      系属es6学习系列文章，本章节主要是es6学习环境的搭建，通过gulp watch监控文件变化，然后自动运行babel任务，nodemon重新运行文件。
+    
+    </summary>
+    
+      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="es6" scheme="http://frontendzzf.com/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第一节babel安装</title>
     <link href="http://frontendzzf.com/2016/11/12/%E7%AC%AC%E4%B8%80%E8%8A%82babel%E5%AE%89%E8%A3%85/"/>
     <id>http://frontendzzf.com/2016/11/12/第一节babel安装/</id>
     <published>2016-11-12T09:40:44.000Z</published>
-    <updated>2016-11-12T11:17:54.323Z</updated>
+    <updated>2016-11-30T04:40:48.671Z</updated>
     
     <content type="html"><![CDATA[<h1 id="e6学习"><a href="#e6学习" class="headerlink" title="e6学习"></a>e6学习</h1><h2 id="第一节babel安装"><a href="#第一节babel安装" class="headerlink" title="第一节babel安装"></a>第一节babel安装</h2><p>参考地址<br><a href="http://babeljs.io/" target="_blank" rel="external">babel官网</a><br><a href="http://guoyongfeng.github.io/idoc/html/React%E8%AF%BE%E7%A8%8B%E4%B8%93%E9%A2%98/Babel%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.html#t14babel-runtime" target="_blank" rel="external">郭永峰博客</a></p>
 <ol>
@@ -149,7 +441,7 @@
     ]
 }
 </code></pre><p>babel默认只转化新的JavaScript语法（syntax），而不转化新的API，比如Iterator，Generator，Set，Maps，Proxy，Reflect，Symbol，Promise等，详情查看<a href="https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/definitions.js" target="_blank" rel="external">definitions.js</a>.<br>为了使用最新的API，安装腻子polyfill插件  </p>
-<pre><code>npm instaall --save-dev babel-polyfill
+<pre><code>npm install --save-dev babel-polyfill
 </code></pre><p> 使用的文件顶部引入</p>
 <pre><code>import &quot;babel-polyfill&quot;;
 </code></pre></li>
@@ -158,43 +450,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;e6学习&quot;&gt;&lt;a href=&quot;#e6学习&quot; class=&quot;headerlink&quot; title=&quot;e6学习&quot;&gt;&lt;/a&gt;e6学习&lt;/h1&gt;&lt;h2 id=&quot;第一节babel安装&quot;&gt;&lt;a href=&quot;#第一节babel安装&quot; class=&quot;headerlink&quot; titl
-    
-    </summary>
-    
-      <category term="技术" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="前端" scheme="http://frontendzzf.com/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="es6" scheme="http://frontendzzf.com/tags/es6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>es6学习环境搭建</title>
-    <link href="http://frontendzzf.com/2016/11/12/es6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://frontendzzf.com/2016/11/12/es6学习环境搭建/</id>
-    <published>2016-11-12T09:40:44.000Z</published>
-    <updated>2016-11-13T06:27:41.354Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="e6学习"><a href="#e6学习" class="headerlink" title="e6学习"></a>e6学习</h1><h2 id="第二节-学习es6环境搭建"><a href="#第二节-学习es6环境搭建" class="headerlink" title="第二节 学习es6环境搭建"></a>第二节 学习es6环境搭建</h2><ol>
-<li><p>gulp 任务配置检测文件变化<br>gulpfile.js配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">gulpLoadPlugins = <span class="built_in">require</span>(<span class="string">'gulp-load-plugins'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> plugins = gulpLoadPlugins();</div><div class="line"></div><div class="line">gulp.task(<span class="string">'babel'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> gulp.src(<span class="string">"src/**/*.js"</span>)</div><div class="line">		.pipe(plugins.babel())</div><div class="line">		.pipe(gulp.dest(<span class="string">"lib"</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'watch'</span>, [<span class="string">'babel'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	gulp.watch(<span class="string">'src/**/*.js'</span>, [<span class="string">'babel'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>nodemon自动运行。<br>nodemon.json配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">  <span class="string">"restartable"</span>: <span class="string">"rs"</span>,</div><div class="line">  <span class="string">"ignore"</span>: [</div><div class="line">    <span class="string">".git"</span>,</div><div class="line">    <span class="string">"node_modules/**/node_modules"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"verbose"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"execMap"</span>: &#123;</div><div class="line">    <span class="string">"js"</span>: <span class="string">"node --harmony"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"events"</span>: &#123;</div><div class="line">    <span class="string">"restart"</span>: <span class="string">"osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"watch"</span>: [</div><div class="line">    <span class="string">"lib/**/*.js"</span></div><div class="line">  ],</div><div class="line">  <span class="string">"env"</span>: &#123;</div><div class="line">    <span class="string">"NODE_ENV"</span>: <span class="string">"development"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"ext"</span>: <span class="string">"js json"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行代码，只需要<code>nodemon lib/lesson1.js</code></p>
-</li>
-<li><p>node.js对es6的支持情况93%，详情参考<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="external">e6支持</a> .</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;e6学习&quot;&gt;&lt;a href=&quot;#e6学习&quot; class=&quot;headerlink&quot; title=&quot;e6学习&quot;&gt;&lt;/a&gt;e6学习&lt;/h1&gt;&lt;h2 id=&quot;第二节-学习es6环境搭建&quot;&gt;&lt;a href=&quot;#第二节-学习es6环境搭建&quot; class=&quot;headerlink
+      系属es6学习系列文章，本章节主要简述了babel的安装与运行。
     
     </summary>
     
@@ -212,7 +468,7 @@
     <link href="http://frontendzzf.com/2016/10/12/React%E7%AC%94%E8%AE%B0/"/>
     <id>http://frontendzzf.com/2016/10/12/React笔记/</id>
     <published>2016-10-12T07:31:17.000Z</published>
-    <updated>2016-10-12T07:36:52.573Z</updated>
+    <updated>2016-11-30T04:46:03.763Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>参考文档。</p>
@@ -223,9 +479,7 @@
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;参考文档。&lt;/p&gt;
-&lt;p&gt;  英文官网:&lt;a href=&quot;https://facebook.github.io/react/docs/why-react.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://facebo
+      本文主要是结合自己最近学习react的相关参考资料记录，以及自己后续的一些react的补充，系属于React系列文章。
     
     </summary>
     
@@ -245,7 +499,7 @@
     <link href="http://frontendzzf.com/2016/09/13/highcharts%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88%E4%B8%80/"/>
     <id>http://frontendzzf.com/2016/09/13/highcharts经验之谈一/</id>
     <published>2016-09-13T10:37:56.000Z</published>
-    <updated>2016-09-21T07:41:37.311Z</updated>
+    <updated>2016-11-30T04:43:42.839Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>怎么改变highart type为折线图line时，设置legend symbol的方法。</p>
@@ -314,10 +568,7 @@
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;怎么改变highart type为折线图line时，设置legend symbol的方法。&lt;/p&gt;
-&lt;p&gt;  两种方式:&lt;/p&gt;
-&lt;p&gt;  &lt;a href=&quot;http://stackoverflow.com/questions/27510810/highc
+      本文主要是结合了在腾讯企点实习期间，做数据分析需求时所遇到的一些问题的经验总结。
     
     </summary>
     

@@ -4,6 +4,7 @@ date: 2016-11-12 17:40:44
 tags:
 - es6
 comments: true
+description: 系属es6学习系列文章，本章节主要简述了babel的安装与运行。
 categories:
 - 技术
 - 前端
@@ -59,7 +60,7 @@ categories:
  babel默认只转化新的JavaScript语法（syntax），而不转化新的API，比如Iterator，Generator，Set，Maps，Proxy，Reflect，Symbol，Promise等，详情查看[definitions.js](https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/definitions.js).  
 为了使用最新的API，安装腻子polyfill插件  
 
-		npm instaall --save-dev babel-polyfill
+		npm install --save-dev babel-polyfill
 	 
 	使用的文件顶部引入
 
